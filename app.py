@@ -1158,6 +1158,11 @@ def generate_final_report(penetration_test):
             'generated_at': datetime.now().isoformat()
         }
 
+# Vercel serverless function handler
+def handler(request):
+    """Vercel serverless function handler"""
+    return app(request.environ, lambda *args: None)
+
 if __name__ == '__main__':
     # Run on HTTP for development (Chrome will show "Not Secure" but it's fine for localhost)
     app.run(debug=True, host='127.0.0.1', port=5000)

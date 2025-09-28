@@ -8,38 +8,3 @@ markdown==3.5.1
 jinja2==3.1.2
 werkzeug==2.3.7
 reportlab==4.0.4
-uuid==1.30
-# Security testing libraries
-python-nmap==0.7.1
-scapy==2.5.0
-cryptography==41.0.7
-paramiko==3.3.1
-dnspython==2.4.2
-python-whois==0.8.0
-shodan==1.31.0
-censys==2.2.4
-# Advanced security tools
-sqlmap==1.8.4
-nikto==2.5.0
-nuclei==3.2.0
-gobuster==3.6.0
-ffuf==2.1.0
-# Real vulnerability scanners
-openvas==22.7.0
-nessus==10.7.0
-# Network analysis
-netifaces==0.11.0
-netaddr==0.10.1
-ipaddress==1.0.23
-# Web security
-selenium==4.15.2
-webdriver-manager==4.0.1
-# Exploit frameworks
-metasploit==6.3.0
-# Threat intelligence
-misp==2.4.180
-# Additional utilities
-psutil==5.9.6
-python-magic==0.4.27
-hashlib2==1.3.1
-base64==1.0.0
