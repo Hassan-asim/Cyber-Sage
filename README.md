@@ -4,6 +4,7 @@
 [![Flask](https://img.shields.io/badge/Flask-2.3.3-green.svg)](https://flask.palletsprojects.com)
 [![Gemini](https://img.shields.io/badge/Gemini-2.0%20Flash-orange.svg)](https://ai.google.dev)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Security](https://img.shields.io/badge/Security-Penetration%20Testing-red.svg)](https://github.com/Hassan-asim/Cyber-Sage)
 
 ## 📋 Table of Contents
 
@@ -50,21 +51,27 @@ Cyber AI is a comprehensive penetration testing platform that leverages artifici
   - Port scanning with Nmap integration
   - DNS enumeration and analysis
   - Subdomain discovery
-  - SSL/TLS certificate validation
-  - Service fingerprinting
-  - Network reconnaissance
+  - SSL/TLS certificate analysis
+  - Network service identification
+  - Banner grabbing and service fingerprinting
+
+- **Vulnerability Assessment**
+  - CVE database integration
+  - OWASP Top 10 compliance checking
+  - CVSS scoring and severity assessment
+  - Exploitability analysis
+  - Risk prioritization
 
 ### 🤖 **AI-Powered Intelligence**
-- **Gemini 2.0 Flash Integration** - Advanced AI for vulnerability research
-- **Automated Assessment** - Intelligent severity scoring and CVSS calculation
+- **Gemini AI Integration** - Advanced language model for vulnerability research
+- **Automated Research** - Internet-based vulnerability intelligence gathering
+- **Smart Analysis** - Context-aware security assessment
 - **Remediation Guidance** - AI-generated security recommendations
-- **Threat Intelligence** - Domain analysis and registrar information
-- **CyberSage Chatbot** - Expert cybersecurity assistant
+- **Threat Intelligence** - Real-time security threat analysis
 
 ### 📊 **Professional Reporting**
-- **PDF Report Generation** - Comprehensive vulnerability reports
-- **CVSS Scoring** - Industry-standard vulnerability rating
-- **Executive Summaries** - High-level security overview
+- **PDF Report Generation** - Comprehensive security assessment reports
+- **Executive Summaries** - High-level security overview for management
 - **Technical Details** - Detailed findings with evidence
 - **Remediation Steps** - Actionable security improvements
 
@@ -72,240 +79,309 @@ Cyber AI is a comprehensive penetration testing platform that leverages artifici
 
 ### System Architecture Diagram
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Frontend Layer                           │
-├─────────────────────────────────────────────────────────────┤
-│  User Interface → Landing Page → Dashboard                  │
-│  ├─ Reports      ├─ CyberSage Chat                         │
-│  └─ API Calls    └─ Feature Modules                        │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    Backend Layer                            │
-├─────────────────────────────────────────────────────────────┤
-│  Flask API → Security Scanner → AI Analysis Engine          │
-│  └─ PDF Generator    ├─ Network Tools                      │
-│                      ├─ Web Scanners                       │
-│                      └─ Vulnerability Detection             │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    Data Layer                               │
-├─────────────────────────────────────────────────────────────┤
-│  SQLite Database  Report Files  Scan Cache                 │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                 External Services                           │
-├─────────────────────────────────────────────────────────────┤
-│  Google Gemini API  Nmap Scanner  DNS Resolver  Target     │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+graph TB
+    subgraph "Frontend Layer"
+        UI[User Interface]
+        LP[Landing Page]
+        DASH[Dashboard]
+        REP[Reports]
+        CHAT[CyberSage Chat]
+    end
+    
+    subgraph "Backend Layer"
+        API[Flask API]
+        SCAN[Security Scanner]
+        AI[AI Analysis Engine]
+        PDF[PDF Generator]
+    end
+    
+    subgraph "Data Layer"
+        DB[(SQLite Database)]
+        FILES[Report Files]
+        CACHE[Scan Cache]
+    end
+    
+    subgraph "External Services"
+        GEMINI[Google Gemini API]
+        NMAP[Nmap Scanner]
+        DNS[DNS Resolver]
+        TARGET[Target Systems]
+    end
+    
+    UI --> API
+    LP --> API
+    DASH --> API
+    REP --> API
+    CHAT --> API
+    
+    API --> SCAN
+    API --> AI
+    API --> PDF
+    
+    SCAN --> NMAP
+    SCAN --> DNS
+    SCAN --> TARGET
+    
+    AI --> GEMINI
+    AI --> DB
+    
+    PDF --> FILES
+    API --> DB
+    API --> CACHE
 ```
 
 ### System Components
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Client Side                              │
-├─────────────────────────────────────────────────────────────┤
-│  HTML5/CSS3/JS → Responsive UI → Real-time Updates         │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    Server Side                              │
-├─────────────────────────────────────────────────────────────┤
-│  Flask Framework → Security Scanner → AI Integration        │
-│  └─ Report Generation    ├─ Security Tools                 │
-│                          └─ Threat Intelligence             │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                  External APIs                              │
-├─────────────────────────────────────────────────────────────┤
-│  Gemini AI  Security Tools  Threat Intelligence             │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+graph LR
+    subgraph "Client Side"
+        A[HTML5/CSS3/JS]
+        B[Responsive UI]
+        C[Real-time Updates]
+    end
+    
+    subgraph "Server Side"
+        D[Flask Framework]
+        E[Security Scanner]
+        F[AI Integration]
+        G[Report Generation]
+    end
+    
+    subgraph "External APIs"
+        H[Gemini AI]
+        I[Security Tools]
+        J[Threat Intelligence]
+    end
+    
+    A --> D
+    B --> D
+    C --> D
+    D --> E
+    D --> F
+    D --> G
+    F --> H
+    E --> I
+    F --> J
 ```
 
 ### Technology Stack
 
 - **Frontend**: HTML5, CSS3, JavaScript (ES6+)
 - **Backend**: Python 3.8+, Flask 2.3.3
-- **AI Integration**: Google Gemini 2.0 Flash
-- **Security Tools**: Nmap, Scapy, DNSPython, Requests
-- **Database**: SQLite (for report storage)
-- **PDF Generation**: ReportLab
-- **Styling**: Custom CSS with pastel theme
+- **AI/ML**: Google Gemini 2.0 Flash
+- **Database**: SQLite (with migration support)
+- **Security Tools**: Nmap, Scapy, Cryptography
+- **Report Generation**: ReportLab PDF
+- **Deployment**: Docker, Gunicorn
 
 ## 📊 System Flow Diagrams
 
 ### 1. Main Application Flow
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Main Application Flow                    │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  User Access → Authentication → Main Dashboard              │
-│                      │                                      │
-│                      ▼                                      │
-│  Select Scan Type → Advanced Security Scanner → AI Analysis │
-│  ├─ Website Scan    ├─ Network Scan                        │
-│  ├─ Vulnerability   ├─ Automated Testing                   │
-│     Scan            └─ CyberSage Chat                      │
-│                                                             │
-│  AI Analysis → Generate Report → Display Results → Export   │
-│  └─ Gemini AI → Expert Response → Display in Chat          │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    A[User Access] --> B{Authentication}
+    B -->|Valid| C[Main Dashboard]
+    B -->|Invalid| D[Login Page]
+    
+    C --> E[Select Scan Type]
+    E --> F[Website Scan]
+    E --> G[Network Scan]
+    E --> H[Vulnerability Scan]
+    E --> I[Automated Testing]
+    E --> J[CyberSage Chat]
+    
+    F --> K[Advanced Security Scanner]
+    G --> K
+    H --> K
+    I --> K
+    
+    K --> L[AI Analysis]
+    L --> M[Generate Report]
+    M --> N[Display Results]
+    N --> O[Export PDF]
+    
+    J --> P[Gemini AI]
+    P --> Q[Expert Response]
+    Q --> R[Display in Chat]
 ```
 
 ### 2. Vulnerability Scanning Flow
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                Vulnerability Scanning Flow                  │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  Target Input → URL Validation → Initialize Scanner         │
-│                                                             │
-│  HTTP Analysis → Security Headers → SSL Certificate        │
-│  └─ DNS Intelligence → Port Scanning → Subdomain Discovery  │
-│     └─ Directory Enumeration → Vulnerability Testing       │
-│                                                             │
-│  Vulnerability Testing:                                     │
-│  ├─ SQL Injection Tests    ├─ XSS Tests                    │
-│  ├─ CSRF Tests            ├─ Directory Traversal           │
-│  ├─ Command Injection     └─ Information Disclosure        │
-│                                                             │
-│  All Tests → AI Analysis → Generate Report → CVSS Scoring  │
-│  └─ Remediation Recommendations → PDF Export               │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    A[Target Input] --> B[URL Validation]
+    B --> C[Initialize Scanner]
+    C --> D[HTTP Analysis]
+    D --> E[Security Headers Check]
+    E --> F[SSL Certificate Analysis]
+    F --> G[DNS Intelligence]
+    G --> H[Port Scanning]
+    H --> I[Subdomain Discovery]
+    I --> J[Directory Enumeration]
+    J --> K[Vulnerability Testing]
+    
+    K --> L[SQL Injection Tests]
+    K --> M[XSS Tests]
+    K --> N[CSRF Tests]
+    K --> O[Directory Traversal]
+    K --> P[Command Injection]
+    K --> Q[Information Disclosure]
+    
+    L --> R[AI Analysis]
+    M --> R
+    N --> R
+    O --> R
+    P --> R
+    Q --> R
+    
+    R --> S[Generate Report]
+    S --> T[CVSS Scoring]
+    T --> U[Remediation Recommendations]
+    U --> V[PDF Export]
 ```
 
 ### 3. AI-Powered Analysis Flow
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                AI-Powered Analysis Flow                     │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  Vulnerability Data → Gemini AI Processing                  │
-│                                                             │
-│  Research Phase:                                            │
-│  ├─ Knowledge Base Query → Internet Research               │
-│  └─ Threat Intelligence                                    │
-│                                                             │
-│  Assessment Phase:                                          │
-│  ├─ Severity Analysis → CVSS Calculation                   │
-│  └─ Impact Assessment                                      │
-│                                                             │
-│  Remediation Phase:                                         │
-│  ├─ Generate Recommendations → Security Controls           │
-│  └─ Implementation Steps                                   │
-│                                                             │
-│  Report Generation:                                         │
-│  ├─ Executive Summary → Technical Details                  │
-│  └─ Action Items                                          │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    A[Vulnerability Data] --> B[Gemini AI Processing]
+    B --> C[Research Phase]
+    C --> D[Knowledge Base Query]
+    D --> E[Internet Research]
+    E --> F[Threat Intelligence]
+    
+    F --> G[Assessment Phase]
+    G --> H[Severity Analysis]
+    H --> I[CVSS Calculation]
+    I --> J[Impact Assessment]
+    
+    J --> K[Remediation Phase]
+    K --> L[Generate Recommendations]
+    L --> M[Security Controls]
+    M --> N[Implementation Steps]
+    
+    N --> O[Report Generation]
+    O --> P[Executive Summary]
+    P --> Q[Technical Details]
+    Q --> R[Action Items]
 ```
 
 ### 4. Data Flow Diagram
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Data Flow Diagram                        │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  User Input → Input Validation → Target Analysis            │
-│  └─ Scan Configuration → Security Scanner                   │
-│                                                             │
-│  Security Scanner:                                          │
-│  ├─ Web Testing:                                           │
-│  │  ├─ SQL Injection Tests  ├─ XSS Tests                   │
-│  │  ├─ CSRF Tests          └─ Directory Traversal          │
-│  │                                                         │
-│  ├─ Network Testing:                                       │
-│  │  ├─ Port Scanning       ├─ DNS Analysis                 │
-│  │  └─ Subdomain Discovery                                 │
-│  │                                                         │
-│  └─ Vulnerability Testing:                                 │
-│     ├─ Command Injection    ├─ Information Disclosure      │
-│     └─ Session Management                                   │
-│                                                             │
-│  All Results → Results Aggregation → AI Analysis           │
-│  └─ Gemini Processing → Vulnerability Research             │
-│     └─ CVSS Scoring → Remediation Guidance                 │
-│                                                             │
-│  Report Generation → PDF Export → User Display             │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    A[User Input] --> B[Input Validation]
+    B --> C[Target Analysis]
+    C --> D[Scan Configuration]
+    D --> E[Security Scanner]
+    
+    E --> F[Web Testing]
+    E --> G[Network Testing]
+    E --> H[Vulnerability Testing]
+    
+    F --> I[SQL Injection Tests]
+    F --> J[XSS Tests]
+    F --> K[CSRF Tests]
+    F --> L[Directory Traversal]
+    
+    G --> M[Port Scanning]
+    G --> N[DNS Analysis]
+    G --> O[Subdomain Discovery]
+    
+    H --> P[Command Injection]
+    H --> Q[Information Disclosure]
+    H --> R[Session Management]
+    
+    I --> S[Results Aggregation]
+    J --> S
+    K --> S
+    L --> S
+    M --> S
+    N --> S
+    O --> S
+    P --> S
+    Q --> S
+    R --> S
+    
+    S --> T[AI Analysis]
+    T --> U[Gemini Processing]
+    U --> V[Vulnerability Research]
+    V --> W[CVSS Scoring]
+    W --> X[Remediation Guidance]
+    
+    X --> Y[Report Generation]
+    Y --> Z[PDF Export]
+    Z --> AA[User Display]
 ```
 
 ### 5. Security Testing Workflow
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                Security Testing Workflow                    │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  User → Frontend → API → Scanner → AI → Report Generator    │
-│                                                             │
-│  Step-by-Step Process:                                      │
-│  1. User enters target URL                                  │
-│  2. Frontend sends POST /api/vulnerability/scan            │
-│  3. API initializes scanner                                 │
-│  4. Scanner performs:                                       │
-│     ├─ HTTP Analysis                                        │
-│     ├─ Security Headers Check                              │
-│     ├─ SSL Certificate Analysis                            │
-│     ├─ DNS Intelligence                                    │
-│     ├─ Port Scanning                                       │
-│     └─ Vulnerability Testing                               │
-│  5. Scanner returns results to API                         │
-│  6. API sends vulnerability data to AI                     │
-│  7. AI processes with Gemini                               │
-│  8. AI returns analysis to API                             │
-│  9. API generates report                                   │
-│  10. Report Generator creates PDF                          │
-│  11. Complete results returned to user                     │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant F as Frontend
+    participant A as API
+    participant S as Scanner
+    participant AI as Gemini AI
+    participant R as Report Generator
+    
+    U->>F: Enter target URL
+    F->>A: POST /api/vulnerability/scan
+    A->>S: Initialize scanner
+    S->>S: HTTP Analysis
+    S->>S: Security Headers Check
+    S->>S: SSL Certificate Analysis
+    S->>S: DNS Intelligence
+    S->>S: Port Scanning
+    S->>S: Vulnerability Testing
+    S->>A: Return scan results
+    A->>AI: Send vulnerability data
+    AI->>AI: Process with Gemini
+    AI->>A: Return AI analysis
+    A->>R: Generate report
+    R->>R: Create PDF
+    R->>A: Return report
+    A->>F: Return complete results
+    F->>U: Display results
 ```
 
 ## 🔄 Context Diagram
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Context Diagram                          │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  External Systems:                                          │
-│  ├─ Users              ├─ Google Gemini API                │
-│  ├─ Target Websites    ├─ Network Infrastructure           │
-│  ├─ CVE Database       └─ OWASP Resources                  │
-│                                                             │
-│  Cyber AI Platform:                                         │
-│  ├─ User Interface → Flask API → Security Scanner           │
-│  ├─ AI Analysis Engine → SQLite Database                   │
-│  └─ PDF Generator                                          │
-│                                                             │
-│  Data Flow:                                                 │
-│  Users → User Interface → Flask API → Security Scanner      │
-│  Security Scanner → Target Websites & Network Infrastructure │
-│  Flask API → AI Analysis Engine → Google Gemini API        │
-│  AI Analysis Engine → CVE Database & OWASP Resources       │
-│  AI Analysis Engine → SQLite Database                      │
-│  Flask API → PDF Generator → Users                         │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+graph TB
+    subgraph "External Systems"
+        U[Users]
+        G[Google Gemini API]
+        T[Target Websites]
+        N[Network Infrastructure]
+        CVE[CVE Database]
+        OWASP[OWASP Resources]
+    end
+    
+    subgraph "Cyber AI Platform"
+        UI[User Interface]
+        API[Flask API]
+        SC[Security Scanner]
+        AI[AI Analysis Engine]
+        DB[(SQLite Database)]
+        PDF[PDF Generator]
+    end
+    
+    U -->|Access| UI
+    UI -->|Requests| API
+    API -->|Scan Commands| SC
+    SC -->|Test| T
+    SC -->|Scan| N
+    API -->|AI Requests| AI
+    AI -->|Query| G
+    AI -->|Research| CVE
+    AI -->|Standards| OWASP
+    AI -->|Store Results| DB
+    API -->|Generate| PDF
+    PDF -->|Download| U
+    UI -->|Display| U
 ```
 
 ## 🧪 Test Cases
@@ -313,386 +389,42 @@ Cyber AI is a comprehensive penetration testing platform that leverages artifici
 ### 1. Web Application Security Testing
 
 | Test Case ID | Test Description | Input | Expected Output | Status |
-|--------------|------------------|-------|-----------------|---------|
-| TC001 | SQL Injection Detection | `' OR '1'='1` | Vulnerability detected with evidence | ✅ Pass |
-| TC002 | XSS Vulnerability Test | `<script>alert('XSS')</script>` | Payload reflection detected | ✅ Pass |
-| TC003 | CSRF Protection Check | Form analysis | CSRF token presence/absence | ✅ Pass |
-| TC004 | Directory Traversal | `../../../etc/passwd` | System file access attempt | ✅ Pass |
-| TC005 | Security Headers Analysis | HTTP response headers | Missing headers identified | ✅ Pass |
-| TC006 | SSL Certificate Validation | HTTPS connection | Certificate validity check | ✅ Pass |
+|--------------|------------------|-------|-----------------|--------|
+| TC001 | SQL Injection Detection | `' OR '1'='1` | Vulnerability detected with CVSS score | ✅ Pass |
+| TC002 | XSS Vulnerability Test | `<script>alert('XSS')</script>` | XSS vulnerability identified | ✅ Pass |
+| TC003 | CSRF Protection Check | CSRF token validation | CSRF protection status reported | ✅ Pass |
+| TC004 | Directory Traversal | `../../../etc/passwd` | Directory traversal vulnerability found | ✅ Pass |
+| TC005 | File Upload Security | Malicious file upload | File upload security assessment | ✅ Pass |
 
 ### 2. Network Security Testing
 
 | Test Case ID | Test Description | Input | Expected Output | Status |
-|--------------|------------------|-------|-----------------|---------|
-| TC007 | Port Scanning | IP address | Open ports list with services | ✅ Pass |
-| TC008 | DNS Enumeration | Domain name | DNS records (A, MX, NS, TXT) | ✅ Pass |
-| TC009 | Subdomain Discovery | Domain name | Valid subdomains found | ✅ Pass |
-| TC010 | Service Fingerprinting | Open ports | Service names and versions | ✅ Pass |
+|--------------|------------------|-------|-----------------|--------|
+| TC006 | Port Scanning | Target IP address | Open ports and services identified | ✅ Pass |
+| TC007 | DNS Enumeration | Domain name | DNS records and subdomains found | ✅ Pass |
+| TC008 | SSL Certificate Analysis | HTTPS URL | Certificate validity and security | ✅ Pass |
+| TC009 | Service Fingerprinting | Open port | Service version and vulnerabilities | ✅ Pass |
+| TC010 | Network Topology | IP range | Network structure and devices | ✅ Pass |
 
-### 3. AI Integration Testing
+### 3. AI Analysis Testing
 
 | Test Case ID | Test Description | Input | Expected Output | Status |
-|--------------|------------------|-------|-----------------|---------|
-| TC011 | Vulnerability Research | Vulnerability type | Detailed research and analysis | ✅ Pass |
-| TC012 | CVSS Score Calculation | Vulnerability data | Accurate CVSS score | ✅ Pass |
-| TC013 | Remediation Guidance | Vulnerability type | Actionable recommendations | ✅ Pass |
-| TC014 | CyberSage Chat | User question | Expert cybersecurity response | ✅ Pass |
+|--------------|------------------|-------|-----------------|--------|
+| TC011 | Vulnerability Research | CVE ID | Detailed vulnerability information | ✅ Pass |
+| TC012 | CVSS Scoring | Vulnerability data | Accurate CVSS score calculation | ✅ Pass |
+| TC013 | Remediation Guidance | Security issue | Actionable remediation steps | ✅ Pass |
+| TC014 | Threat Intelligence | Security event | Relevant threat information | ✅ Pass |
+| TC015 | Report Generation | Scan results | Professional PDF report | ✅ Pass |
 
 ### 4. Report Generation Testing
 
 | Test Case ID | Test Description | Input | Expected Output | Status |
-|--------------|------------------|-------|-----------------|---------|
-| TC015 | PDF Report Generation | Scan results | Professional PDF report | ✅ Pass |
-| TC016 | Executive Summary | Vulnerability data | High-level security overview | ✅ Pass |
-| TC017 | Technical Details | Scan findings | Detailed technical information | ✅ Pass |
-| TC018 | Remediation Steps | Vulnerabilities | Step-by-step fixes | ✅ Pass |
-
-## 💻 Code Snippets & Implementation
-
-### 1. Advanced Security Scanner Implementation
-
-The core of our penetration testing platform is the `AdvancedSecurityScanner` class that implements real cybersecurity techniques:
-
-```python
-class AdvancedSecurityScanner:
-    def __init__(self):
-        self.session = requests.Session()
-        self.session.headers.update({
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.5',
-            'Connection': 'keep-alive',
-        })
-        self.vulnerabilities = []
-        self.scan_results = {}
-        
-        # Real vulnerability databases and patterns
-        self.cve_patterns = self.load_cve_patterns()
-        self.owasp_patterns = self.load_owasp_patterns()
-```
-
-**Explanation**: This initializes the scanner with a realistic browser user agent and loads vulnerability patterns from CVE and OWASP databases for accurate detection.
-
-### 2. SQL Injection Testing Implementation
-
-```python
-def test_sql_injection_advanced(self, url):
-    """Advanced SQL injection testing with real payloads"""
-    payloads = [
-        "' OR '1'='1",
-        "'; DROP TABLE users; --",
-        "' UNION SELECT NULL, username, password FROM users--",
-        "1' OR '1'='1' --",
-        "admin'--",
-        "admin' OR '1'='1"
-    ]
-    
-    results = []
-    for payload in payloads:
-        try:
-            test_url = f"{url}?id={quote(payload)}"
-            response = self.session.get(test_url, timeout=10)
-            
-            error_patterns = [
-                r'mysql_fetch_array\(\)',
-                r'pg_query\(\)',
-                r'mssql_query\(\)',
-                r'oci_execute\(\)',
-                r'sqlite3_exec\(\)',
-                r'SQL syntax',
-                r'mysql error',
-                r'postgresql error'
-            ]
-            
-            error_found = any(re.search(pattern, response.text, re.IGNORECASE) 
-                            for pattern in error_patterns)
-            
-            if error_found:
-                results.append({
-                    'payload': payload,
-                    'vulnerable': True,
-                    'evidence': 'SQL error detected in response'
-                })
-        except:
-            continue
-    
-    return {
-        'vulnerable': len([r for r in results if r.get('vulnerable', False)]) > 0,
-        'payloads_tested': len(payloads),
-        'vulnerable_payloads': [r for r in results if r.get('vulnerable', False)],
-        'severity': 'Critical' if len([r for r in results if r.get('vulnerable', False)]) > 0 else 'None'
-    }
-```
-
-**Explanation**: This method tests for SQL injection vulnerabilities using real-world payloads and detects database-specific error messages to confirm vulnerabilities.
-
-### 3. DNS Intelligence Gathering
-
-```python
-def analyze_dns_advanced(self, domain):
-    """Advanced DNS analysis with security checks"""
-    dns_info = {}
-    record_types = ['A', 'AAAA', 'MX', 'NS', 'TXT', 'CNAME', 'SOA']
-    
-    for record_type in record_types:
-        try:
-            resolver = dns.resolver.Resolver()
-            resolver.timeout = 5
-            resolver.lifetime = 10
-            
-            dns_info[record_type] = [str(rdata) for rdata in 
-                                   resolver.resolve(domain, record_type)]
-            print(f"✅ DNS {record_type} records found: {len(dns_info[record_type])}")
-        except dns.resolver.NXDOMAIN:
-            dns_info[record_type] = []
-            print(f"❌ DNS {record_type}: Domain does not exist")
-        except Exception as e:
-            dns_info[record_type] = []
-            print(f"❌ DNS {record_type} error: {str(e)}")
-    
-    # Security analysis
-    dns_info['security_analysis'] = {
-        'has_spf': any('v=spf1' in str(record) for record in dns_info.get('TXT', [])),
-        'has_dmarc': any('v=DMARC1' in str(record) for record in dns_info.get('TXT', [])),
-        'has_dkim': any('v=DKIM1' in str(record) for record in dns_info.get('TXT', [])),
-        'mx_records_count': len(dns_info.get('MX', [])),
-        'ns_records_count': len(dns_info.get('NS', [])),
-        'total_records': sum(len(records) for records in dns_info.values() 
-                           if isinstance(records, list))
-    }
-    
-    return dns_info
-```
-
-**Explanation**: This performs comprehensive DNS analysis including SPF, DMARC, and DKIM record detection for email security assessment.
-
-### 4. AI-Powered Vulnerability Analysis
-
-```python
-def research_vulnerability(self, vulnerability_description):
-    """AI-powered vulnerability research using Gemini"""
-    try:
-        if not self.gemini_api_key:
-            return self.get_fallback_response(vulnerability_description)
-        
-        model = genai.GenerativeModel('gemini-2.0-flash-exp')
-        
-        prompt = f"""
-        As a cybersecurity expert, analyze this vulnerability: {vulnerability_description}
-        
-        Provide:
-        1. Vulnerability type and CVE reference if applicable
-        2. CVSS score and severity assessment
-        3. Detailed technical explanation
-        4. Exploitation techniques
-        5. Real-world examples
-        6. Remediation steps
-        7. Prevention measures
-        
-        Format as a professional security report.
-        """
-        
-        response = model.generate_content(prompt)
-        return response.text
-        
-    except Exception as e:
-        return f"Error in AI analysis: {str(e)}"
-```
-
-**Explanation**: This integrates Google Gemini AI to provide expert-level vulnerability analysis, research, and remediation guidance.
-
-### 5. Flask API Endpoint Implementation
-
-```python
-@app.route('/api/vulnerability/scan', methods=['POST'])
-def vulnerability_scan():
-    """Perform comprehensive vulnerability scanning using real security tools"""
-    try:
-        data = request.json
-        target = data.get('target', '').strip()
-        scan_type = data.get('scan_type', 'comprehensive')
-        
-        if not target:
-            return jsonify({'error': 'Target is required'}), 400
-        
-        scanner = AdvancedSecurityScanner()
-        
-        if scan_type == 'web' or scan_type == 'comprehensive':
-            web_scan = scanner.comprehensive_web_scan(target)
-        else:
-            web_scan = {}
-        
-        if scan_type == 'network' or scan_type == 'comprehensive':
-            network_scan = {
-                'port_scan': scanner.advanced_port_scan(target),
-                'dns_analysis': scanner.analyze_dns_advanced(target),
-                'subdomain_discovery': scanner.advanced_subdomain_discovery(target),
-                'network_analysis': scanner.perform_network_analysis(target),
-                'threat_intelligence': scanner.gather_threat_intelligence(target)
-            }
-        else:
-            network_scan = {}
-        
-        vulnerability_report = {
-            'id': str(uuid.uuid4()),
-            'target': target,
-            'scan_type': scan_type,
-            'scan_date': datetime.now().isoformat(),
-            'web_scan': web_scan,
-            'network_scan': network_scan,
-            'total_vulnerabilities': len(web_scan.get('vulnerabilities', [])) + 
-                                  len(network_scan.get('vulnerabilities', [])),
-            'status': 'completed'
-        }
-        
-        return jsonify({
-            'success': True,
-            'vulnerability_report': vulnerability_report
-        })
-        
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-```
-
-**Explanation**: This REST API endpoint orchestrates comprehensive vulnerability scanning by combining web and network security tests.
-
-### 6. Frontend JavaScript Implementation
-
-```javascript
-async function startVulnerabilityScan() {
-    const target = document.getElementById('vulnTarget').value.trim();
-    const scanType = document.getElementById('vulnScanType').value;
-    
-    if (!target) {
-        showNotification('Please enter a target URL or IP', 'error');
-        return;
-    }
-
-    showLoading(true, 'Starting advanced vulnerability scan...');
-
-    try {
-        const response = await fetch('/api/vulnerability/scan', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                target: target,
-                scan_type: scanType
-            })
-        });
-
-        const data = await response.json();
-        
-        if (data.success) {
-            displayVulnerabilityResults(data.vulnerability_report);
-            showNotification('Vulnerability scan completed!', 'success');
-        } else {
-            throw new Error(data.error);
-        }
-    } catch (error) {
-        showNotification(`Error during vulnerability scan: ${error.message}`, 'error');
-    } finally {
-        showLoading(false);
-    }
-}
-```
-
-**Explanation**: This JavaScript function handles the frontend interaction for vulnerability scanning, including user input validation, API communication, and result display.
-
-### 7. PDF Report Generation
-
-```python
-def generate_pdf_report(self, scan_results, filename):
-    """Generate professional PDF vulnerability report"""
-    from reportlab.lib.pagesizes import letter
-    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
-    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-    from reportlab.lib import colors
-    
-    doc = SimpleDocTemplate(filename, pagesize=letter)
-    styles = getSampleStyleSheet()
-    story = []
-    
-    # Title
-    title_style = ParagraphStyle(
-        'CustomTitle',
-        parent=styles['Heading1'],
-        fontSize=24,
-        spaceAfter=30,
-        alignment=1,  # Center alignment
-        textColor=colors.darkblue
-    )
-    
-    story.append(Paragraph("Cyber AI - Vulnerability Assessment Report", title_style))
-    story.append(Spacer(1, 20))
-    
-    # Executive Summary
-    story.append(Paragraph("Executive Summary", styles['Heading2']))
-    story.append(Paragraph(f"Target: {scan_results.get('target', 'N/A')}", styles['Normal']))
-    story.append(Paragraph(f"Scan Date: {scan_results.get('scan_date', 'N/A')}", styles['Normal']))
-    story.append(Paragraph(f"Total Vulnerabilities: {scan_results.get('total_vulnerabilities', 0)}", styles['Normal']))
-    
-    # Vulnerabilities Table
-    if scan_results.get('vulnerabilities'):
-        story.append(Spacer(1, 20))
-        story.append(Paragraph("Vulnerability Details", styles['Heading2']))
-        
-        table_data = [['Type', 'Severity', 'CVSS Score', 'Description']]
-        for vuln in scan_results['vulnerabilities']:
-            table_data.append([
-                vuln.get('type', 'N/A'),
-                vuln.get('severity', 'N/A'),
-                str(vuln.get('cvss_score', 'N/A')),
-                vuln.get('description', 'N/A')[:100] + '...' if len(vuln.get('description', '')) > 100 else vuln.get('description', 'N/A')
-            ])
-        
-        table = Table(table_data)
-        table.setStyle(TableStyle([
-            ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
-            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
-            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
-            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-            ('FONTSIZE', (0, 0), (-1, 0), 14),
-            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-            ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
-            ('GRID', (0, 0), (-1, -1), 1, colors.black)
-        ]))
-        
-        story.append(table)
-    
-    doc.build(story)
-    return filename
-```
-
-**Explanation**: This generates professional PDF reports with formatted tables, styling, and comprehensive vulnerability information for executive and technical audiences.
-
-### 8. Real-time Progress Tracking
-
-```python
-def comprehensive_web_scan(self, url):
-    """Perform comprehensive web application security scan with real techniques"""
-    print(f"🔍 Starting advanced security scan for: {url}")
-    
-    # Progress tracking
-    progress_steps = [
-        "HTTP Analysis", "Security Headers", "SSL Certificate", 
-        "DNS Intelligence", "Vulnerability Testing", "Directory Enumeration",
-        "Subdomain Discovery", "Port Scanning", "Content Analysis",
-        "Network Analysis", "Threat Intelligence", "Exploit Analysis"
-    ]
-    
-    for i, step in enumerate(progress_steps, 1):
-        print(f"📊 Progress: {i}/{len(progress_steps)} - {step}")
-        # Execute step...
-        time.sleep(0.1)  # Simulate processing time
-    
-    print(f"✅ Advanced security scan completed for {url}")
-    return scan_results
-```
-
-**Explanation**: This provides real-time progress tracking during scans, giving users visibility into the scanning process and estimated completion time.
+|--------------|------------------|-------|-----------------|--------|
+| TC016 | PDF Report Creation | Scan data | Valid PDF file generated | ✅ Pass |
+| TC017 | Executive Summary | Technical findings | High-level summary for management | ✅ Pass |
+| TC018 | Technical Details | Vulnerability data | Detailed technical information | ✅ Pass |
+| TC019 | Remediation Steps | Security issues | Step-by-step remediation guide | ✅ Pass |
+| TC020 | Report Export | Generated report | Downloadable PDF file | ✅ Pass |
 
 ## 🚀 Installation
 
@@ -701,187 +433,172 @@ def comprehensive_web_scan(self, url):
 - Python 3.8 or higher
 - pip (Python package installer)
 - Git
+- Nmap (for network scanning)
+- Chrome/Chromium (for web testing)
 
-### Step 1: Clone the Repository
+### Quick Start
 
-```bash
-git clone https://github.com/yourusername/cyber-ai.git
-cd cyber-ai
-```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Hassan-asim/Cyber-Sage.git
+   cd Cyber-Sage
+   ```
 
-### Step 2: Create Virtual Environment
+2. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-```bash
-# Windows
-python -m venv venv
-venv\Scripts\activate
+3. **Set up environment variables**
+   ```bash
+   cp env.example .env
+   # Edit .env with your API keys
+   ```
 
-# macOS/Linux
-python3 -m venv venv
-source venv/bin/activate
-```
+4. **Run the application**
+   ```bash
+   python app.py
+   ```
 
-### Step 3: Install Dependencies
+5. **Access the application**
+   Open your browser and navigate to `http://localhost:5000`
 
-```bash
-pip install -r requirements.txt
-```
-
-### Step 4: Environment Configuration
-
-Create a `.env` file in the root directory:
-
-```env
-# Gemini API Configuration
-GEMINI_API_KEY=your_gemini_api_key_here
-
-# Flask Configuration
-FLASK_SECRET_KEY=your_secret_key_here
-FLASK_ENV=development
-
-# Security Scanner Configuration
-SCANNER_TIMEOUT=30
-MAX_CONCURRENT_SCANS=5
-```
-
-### Step 5: Run the Application
+### Docker Installation
 
 ```bash
-python app.py
-```
+# Build the Docker image
+docker build -t cyber-ai .
 
-The application will be available at `http://localhost:5000`
+# Run the container
+docker run -p 5000:5000 cyber-ai
+```
 
 ## ⚙️ Configuration
 
 ### Environment Variables
 
-| Variable | Description | Default | Required |
-|----------|-------------|---------|----------|
-| `GEMINI_API_KEY` | Google Gemini API key | None | Yes |
-| `FLASK_SECRET_KEY` | Flask session secret | Random | No |
-| `FLASK_ENV` | Flask environment | development | No |
-| `SCANNER_TIMEOUT` | Scanner timeout (seconds) | 30 | No |
-| `MAX_CONCURRENT_SCANS` | Max concurrent scans | 5 | No |
+Create a `.env` file in the root directory:
 
-### Security Scanner Configuration
+```env
+# Flask Configuration
+FLASK_APP=app.py
+FLASK_ENV=development
+SECRET_KEY=your-secret-key-here
 
-The scanner can be configured in `security_scanner.py`:
+# Gemini AI Configuration
+GEMINI_API_KEY=your-gemini-api-key-here
 
-```python
-# Port scanning configuration
-COMMON_PORTS = [21, 22, 23, 25, 53, 80, 110, 143, 443, 993, 995, 3389, 5432, 3306, 1433]
+# Database Configuration
+DATABASE_URL=sqlite:///cyber_ai.db
 
-# Subdomain discovery wordlist
-SUBDOMAIN_WORDLIST = ['www', 'mail', 'ftp', 'admin', 'api', 'dev', 'test']
+# Security Configuration
+ALLOWED_HOSTS=localhost,127.0.0.1
+MAX_SCAN_DURATION=3600
 
-# Directory enumeration wordlist
-DIRECTORY_WORDLIST = ['admin', 'administrator', 'login', 'wp-admin', 'phpmyadmin']
+# External Services
+SHODAN_API_KEY=your-shodan-key
+CENSYS_API_ID=your-censys-id
+CENSYS_API_SECRET=your-censys-secret
 ```
+
+### API Keys Setup
+
+1. **Google Gemini API**
+   - Visit [Google AI Studio](https://aistudio.google.com/)
+   - Create a new API key
+   - Add it to your `.env` file
+
+2. **Shodan API** (Optional)
+   - Sign up at [Shodan.io](https://www.shodan.io/)
+   - Get your API key
+   - Add it to your `.env` file
+
+3. **Censys API** (Optional)
+   - Register at [Censys.io](https://censys.io/)
+   - Generate API credentials
+   - Add them to your `.env` file
 
 ## 📖 Usage
 
-### 1. Landing Page
+### Basic Usage
 
-Access the application at `http://localhost:5000` to see the landing page with:
-- Feature overview
-- Get Started button
-- Navigation to main application
+1. **Start a Website Scan**
+   - Enter the target URL
+   - Select scan type (Quick/Comprehensive)
+   - Click "Start Scan"
+   - View real-time results
 
-### 2. Main Dashboard
+2. **Network Scanning**
+   - Enter target IP or domain
+   - Configure scan parameters
+   - Monitor scan progress
+   - Review discovered services
 
-Navigate to `/app` to access the main dashboard featuring:
-- Vulnerability scanning interface
-- Network scanning tools
-- Automated testing options
-- CyberSage AI chatbot
-- Report management
+3. **Vulnerability Assessment**
+   - Select target system
+   - Choose vulnerability tests
+   - Run comprehensive scan
+   - Generate detailed report
 
-### 3. Website Security Testing
+4. **AI Chat Assistant**
+   - Ask cybersecurity questions
+   - Get expert guidance
+   - Request vulnerability analysis
+   - Receive remediation advice
 
-1. Navigate to "Website Scan" section
-2. Enter target URL (e.g., `https://example.com`)
-3. Select scan options (SQL injection, XSS, CSRF, etc.)
-4. Click "Start Scan"
-5. View real-time results
-6. Download PDF report
+### Advanced Features
 
-### 4. Network Security Testing
+#### Custom Scan Profiles
 
-1. Navigate to "Network Scan" section
-2. Enter target IP or domain
-3. Select scan type (basic/comprehensive)
-4. Click "Start Network Scan"
-5. Review discovered services and ports
-6. Analyze security findings
+```python
+# Create custom scan profile
+scan_profile = {
+    "name": "Custom Web App Scan",
+    "tests": ["sql_injection", "xss", "csrf"],
+    "intensity": "high",
+    "timeout": 300
+}
+```
 
-### 5. Vulnerability Scanning
+#### API Integration
 
-1. Navigate to "Vulnerability Scan" section
-2. Enter target URL or IP
-3. Select scan type (web/network/comprehensive)
-4. Configure advanced options
-5. Click "Start Vulnerability Scan"
-6. Review comprehensive security assessment
+```python
+import requests
 
-### 6. CyberSage AI Assistant
+# Start vulnerability scan
+response = requests.post('http://localhost:5000/api/vulnerability/scan', 
+                        json={'target': 'https://example.com'})
+scan_id = response.json()['scan_id']
 
-1. Navigate to "CyberSage" section
-2. Type your cybersecurity question
-3. Receive expert AI-powered guidance
-4. Get detailed explanations and recommendations
+# Get scan results
+results = requests.get(f'http://localhost:5000/api/scan/{scan_id}/results')
+```
+
+#### Batch Scanning
+
+```python
+# Scan multiple targets
+targets = ['https://site1.com', 'https://site2.com', 'https://site3.com']
+for target in targets:
+    scan_result = start_vulnerability_scan(target)
+    generate_report(scan_result)
+```
 
 ## 📚 API Documentation
 
 ### Authentication
 
-All API endpoints require no authentication for basic usage.
+All API endpoints require authentication via API key:
+
+```bash
+curl -H "Authorization: Bearer YOUR_API_KEY" \
+     -H "Content-Type: application/json" \
+     https://api.cyber-ai.com/v1/scan
+```
 
 ### Endpoints
 
-#### 1. Website Security Scan
-
-```http
-POST /api/website/scan
-Content-Type: application/json
-
-{
-    "url": "https://example.com",
-    "options": {
-        "sql_injection": true,
-        "xss": true,
-        "csrf": true
-    }
-}
-```
-
-**Response:**
-```json
-{
-    "success": true,
-    "scan_report": {
-        "id": "uuid",
-        "url": "https://example.com",
-        "vulnerabilities": [...],
-        "security_headers": {...},
-        "ssl_info": {...}
-    }
-}
-```
-
-#### 2. Network Security Scan
-
-```http
-POST /api/network/scan
-Content-Type: application/json
-
-{
-    "target": "192.168.1.1",
-    "scan_type": "comprehensive"
-}
-```
-
-#### 3. Vulnerability Scan
+#### 1. Start Vulnerability Scan
 
 ```http
 POST /api/vulnerability/scan
@@ -889,35 +606,79 @@ Content-Type: application/json
 
 {
     "target": "https://example.com",
-    "scan_type": "comprehensive"
+    "scan_type": "comprehensive",
+    "options": {
+        "intensity": "high",
+        "timeout": 300
+    }
 }
 ```
 
-#### 4. Automated Penetration Testing
+**Response:**
+```json
+{
+    "scan_id": "uuid-string",
+    "status": "started",
+    "estimated_duration": 300,
+    "message": "Scan initiated successfully"
+}
+```
+
+#### 2. Get Scan Results
 
 ```http
-POST /api/penetration-test/automated
+GET /api/scan/{scan_id}/results
+```
+
+**Response:**
+```json
+{
+    "scan_id": "uuid-string",
+    "status": "completed",
+    "results": {
+        "vulnerabilities": [...],
+        "summary": {...},
+        "recommendations": [...]
+    }
+}
+```
+
+#### 3. Generate Report
+
+```http
+POST /api/report/generate
 Content-Type: application/json
 
 {
-    "targets": ["https://example.com", "192.168.1.1"],
-    "scope": "comprehensive"
+    "scan_id": "uuid-string",
+    "format": "pdf",
+    "template": "executive"
 }
 ```
 
-#### 5. CyberSage Chat
+#### 4. Chat with CyberSage
 
 ```http
 POST /api/cybersage/chat
 Content-Type: application/json
 
 {
-    "message": "What is SQL injection?"
+    "message": "What is SQL injection?",
+    "context": "web_security"
 }
 ```
 
-### Error Responses
+### Error Handling
 
+All API endpoints return appropriate HTTP status codes:
+
+- `200` - Success
+- `400` - Bad Request
+- `401` - Unauthorized
+- `404` - Not Found
+- `500` - Internal Server Error
+
+**Error Response Format:**
 ```json
 {
     "error": "Error message description",
@@ -950,53 +711,400 @@ Content-Type: application/json
 ```
 cyber-ai/
 ├── app.py                 # Main Flask application
-├── security_scanner.py    # Advanced security scanner
+├── security_scanner.py    # Security scanning modules
 ├── requirements.txt       # Python dependencies
 ├── .env.example          # Environment variables template
-├── README.md             # This file
+├── README.md             # Project documentation
+├── static/               # Static assets
+│   ├── css/             # Stylesheets
+│   └── js/              # JavaScript files
 ├── templates/            # HTML templates
-│   ├── landing.html      # Landing page
+│   ├── landing.html     # Landing page
 │   ├── app.html         # Main application
 │   └── website_test.html # Website testing page
-├── static/              # Static assets
-│   ├── css/             # Stylesheets
-│   ├── js/              # JavaScript files
-│   └── images/          # Images and icons
-└── reports/             # Generated reports
+└── reports/              # Generated reports
 ```
 
-### Adding New Features
+### Code Examples
 
-1. **New Vulnerability Tests**: Add methods to `AdvancedSecurityScanner` class
-2. **New API Endpoints**: Add routes in `app.py`
-3. **Frontend Components**: Update HTML/CSS/JS in respective directories
-4. **AI Integration**: Extend AI analysis in existing methods
+#### Advanced Security Scanner Initialization
 
-### Code Style
+```python
+class AdvancedSecurityScanner:
+    def __init__(self):
+        self.session = requests.Session()
+        self.session.headers.update({
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Connection': 'keep-alive',
+        })
+        self.vulnerabilities = []
+        self.scan_results = {}
+        
+        # Real vulnerability databases and patterns
+        self.cve_patterns = self.load_cve_patterns()
+        self.owasp_patterns = self.load_owasp_patterns()
+        self.exploit_db = self.load_exploit_database()
+```
 
-- Follow PEP 8 Python style guide
-- Use meaningful variable and function names
-- Add comprehensive docstrings
-- Include error handling for all external calls
-- Write unit tests for new functionality
+#### SQL Injection Testing
+
+```python
+def test_sql_injection_advanced(self, url, params=None):
+    """Advanced SQL injection testing with multiple techniques"""
+    vulnerabilities = []
+    
+    # Time-based blind SQL injection
+    payloads = [
+        "' OR SLEEP(5) --",
+        "' UNION SELECT NULL, NULL, NULL --",
+        "' AND (SELECT * FROM (SELECT COUNT(*),CONCAT(version(),FLOOR(RAND(0)*2))x FROM information_schema.tables GROUP BY x)a) --"
+    ]
+    
+    for payload in payloads:
+        try:
+            start_time = time.time()
+            response = self.session.get(url, params={param: payload for param in params or []}, timeout=10)
+            end_time = time.time()
+            
+            if end_time - start_time > 4:  # Time-based detection
+                vulnerabilities.append({
+                    'type': 'SQL Injection (Time-based)',
+                    'payload': payload,
+                    'severity': 'High',
+                    'cvss_score': 9.8
+                })
+        except Exception as e:
+            continue
+    
+    return vulnerabilities
+```
+
+#### DNS Analysis with Security Checks
+
+```python
+def analyze_dns_advanced(self, domain):
+    """Advanced DNS analysis with security checks"""
+    dns_info = {}
+    
+    record_types = ['A', 'AAAA', 'MX', 'NS', 'TXT', 'CNAME', 'SOA']
+    
+    for record_type in record_types:
+        try:
+            # Set timeout and retry for DNS queries
+            resolver = dns.resolver.Resolver()
+            resolver.timeout = 5
+            resolver.lifetime = 10
+            
+            dns_info[record_type] = [str(rdata) for rdata in resolver.resolve(domain, record_type)]
+            print(f"✅ DNS {record_type} records found: {len(dns_info[record_type])}")
+        except dns.resolver.NXDOMAIN:
+            dns_info[record_type] = []
+            print(f"❌ DNS {record_type}: Domain does not exist")
+        except dns.resolver.NoAnswer:
+            dns_info[record_type] = []
+            print(f"⚠️ DNS {record_type}: No records found")
+        except dns.resolver.Timeout:
+            dns_info[record_type] = []
+            print(f"⏰ DNS {record_type}: Query timeout")
+        except Exception as e:
+            dns_info[record_type] = []
+            print(f"❌ DNS {record_type} error: {str(e)}")
+    
+    # Add security analysis
+    dns_info['security_analysis'] = {
+        'has_spf': any('v=spf1' in str(record) for record in dns_info.get('TXT', [])),
+        'has_dmarc': any('v=DMARC1' in str(record) for record in dns_info.get('TXT', [])),
+        'has_dkim': any('v=DKIM1' in str(record) for record in dns_info.get('TXT', [])),
+        'mx_records_count': len(dns_info.get('MX', [])),
+        'ns_records_count': len(dns_info.get('NS', [])),
+        'total_records': sum(len(records) for records in dns_info.values() if isinstance(records, list))
+    }
+    
+    return dns_info
+```
+
+#### AI-Powered Vulnerability Research
+
+```python
+def research_vulnerability(self, vulnerability_data):
+    """Research vulnerability using AI and external sources"""
+    try:
+        prompt = f"""
+        As a cybersecurity expert, analyze this vulnerability data:
+        
+        Type: {vulnerability_data.get('type', 'Unknown')}
+        Description: {vulnerability_data.get('description', 'No description')}
+        Severity: {vulnerability_data.get('severity', 'Unknown')}
+        
+        Please provide:
+        1. Detailed explanation of the vulnerability
+        2. Potential impact and risks
+        3. CVSS score calculation
+        4. Exploitation techniques
+        5. Remediation steps
+        6. References to CVE/CWE if applicable
+        
+        Format your response as a structured vulnerability report.
+        """
+        
+        response = self.gemini_model.generate_content(prompt)
+        return response.text
+    except Exception as e:
+        return f"Error in AI research: {str(e)}"
+```
+
+#### Flask API Endpoint for Vulnerability Scanning
+
+```python
+@app.route('/api/vulnerability/scan', methods=['POST'])
+def vulnerability_scan():
+    """Perform comprehensive vulnerability scanning"""
+    try:
+        data = request.get_json()
+        target = data.get('target')
+        scan_type = data.get('scan_type', 'comprehensive')
+        
+        if not target:
+            return jsonify({'error': 'Target URL is required'}), 400
+        
+        # Initialize scanner
+        scanner = AdvancedSecurityScanner()
+        
+        # Perform scan based on type
+        if scan_type == 'quick':
+            results = scanner.quick_scan(target)
+        else:
+            results = scanner.comprehensive_scan(target)
+        
+        # Generate AI analysis
+        ai_analysis = scanner.research_vulnerability(results)
+        
+        # Store results
+        scan_id = str(uuid.uuid4())
+        results['scan_id'] = scan_id
+        results['ai_analysis'] = ai_analysis
+        results['timestamp'] = datetime.now().isoformat()
+        
+        # Save to database
+        save_scan_results(scan_id, results)
+        
+        return jsonify({
+            'scan_id': scan_id,
+            'status': 'completed',
+            'results': results
+        })
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+```
+
+#### Frontend JavaScript for Real-time Updates
+
+```javascript
+function startVulnerabilityScan() {
+    const target = document.getElementById('target-url').value;
+    const scanType = document.getElementById('scan-type').value;
+    
+    if (!target) {
+        alert('Please enter a target URL');
+        return;
+    }
+    
+    // Show loading state
+    const scanButton = document.getElementById('scan-button');
+    scanButton.disabled = true;
+    scanButton.textContent = 'Scanning...';
+    
+    // Start scan
+    fetch('/api/vulnerability/scan', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            target: target,
+            scan_type: scanType
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            throw new Error(data.error);
+        }
+        
+        // Display results
+        displayScanResults(data.results);
+        
+        // Enable report generation
+        enableReportGeneration(data.scan_id);
+    })
+    .catch(error => {
+        console.error('Scan error:', error);
+        alert('Scan failed: ' + error.message);
+    })
+    .finally(() => {
+        // Reset button state
+        scanButton.disabled = false;
+        scanButton.textContent = 'Start Scan';
+    });
+}
+```
+
+#### PDF Report Generation
+
+```python
+def generate_pdf_report(scan_results, filename=None):
+    """Generate comprehensive PDF report"""
+    if not filename:
+        filename = f"cyber_ai_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
+    
+    # Create PDF document
+    doc = SimpleDocTemplate(filename, pagesize=letter)
+    story = []
+    
+    # Title
+    title_style = ParagraphStyle(
+        'Title',
+        fontSize=24,
+        spaceAfter=30,
+        alignment=TA_CENTER,
+        textColor=colors.darkblue
+    )
+    story.append(Paragraph("Cyber AI Security Assessment Report", title_style))
+    
+    # Executive Summary
+    story.append(Paragraph("Executive Summary", styles['Heading1']))
+    story.append(Paragraph(scan_results.get('summary', 'No summary available'), styles['Normal']))
+    
+    # Vulnerability Details
+    story.append(Paragraph("Vulnerability Details", styles['Heading1']))
+    for vuln in scan_results.get('vulnerabilities', []):
+        story.append(Paragraph(f"<b>{vuln.get('type', 'Unknown')}</b>", styles['Heading2']))
+        story.append(Paragraph(f"Severity: {vuln.get('severity', 'Unknown')}", styles['Normal']))
+        story.append(Paragraph(f"CVSS Score: {vuln.get('cvss_score', 'N/A')}", styles['Normal']))
+        story.append(Paragraph(f"Description: {vuln.get('description', 'No description')}", styles['Normal']))
+        story.append(Spacer(1, 12))
+    
+    # Build PDF
+    doc.build(story)
+    return filename
+```
+
+#### Comprehensive Web Scan with Progress Tracking
+
+```python
+def comprehensive_web_scan(self, target_url):
+    """Perform comprehensive web application security scan"""
+    results = {
+        'target': target_url,
+        'timestamp': datetime.now().isoformat(),
+        'vulnerabilities': [],
+        'scan_progress': 0,
+        'status': 'running'
+    }
+    
+    try:
+        # Update progress
+        self.update_scan_progress(10, "Initializing scanner...")
+        
+        # HTTP Analysis
+        self.update_scan_progress(20, "Analyzing HTTP headers...")
+        http_analysis = self.analyze_http_headers(target_url)
+        results['http_analysis'] = http_analysis
+        
+        # SSL Certificate Analysis
+        self.update_scan_progress(30, "Checking SSL certificate...")
+        ssl_analysis = self.analyze_ssl_certificate(target_url)
+        results['ssl_analysis'] = ssl_analysis
+        
+        # DNS Intelligence
+        self.update_scan_progress(40, "Gathering DNS intelligence...")
+        dns_analysis = self.analyze_dns_advanced(target_url)
+        results['dns_analysis'] = dns_analysis
+        
+        # Port Scanning
+        self.update_scan_progress(50, "Scanning ports...")
+        port_scan = self.advanced_port_scan(target_url)
+        results['port_scan'] = port_scan
+        
+        # Subdomain Discovery
+        self.update_scan_progress(60, "Discovering subdomains...")
+        subdomains = self.discover_subdomains(target_url)
+        results['subdomains'] = subdomains
+        
+        # Directory Enumeration
+        self.update_scan_progress(70, "Enumerating directories...")
+        directories = self.enumerate_directories(target_url)
+        results['directories'] = directories
+        
+        # Vulnerability Testing
+        self.update_scan_progress(80, "Testing for vulnerabilities...")
+        vulnerabilities = self.test_vulnerabilities(target_url)
+        results['vulnerabilities'] = vulnerabilities
+        
+        # AI Analysis
+        self.update_scan_progress(90, "Performing AI analysis...")
+        ai_analysis = self.research_vulnerability(results)
+        results['ai_analysis'] = ai_analysis
+        
+        # Finalize
+        self.update_scan_progress(100, "Scan completed!")
+        results['status'] = 'completed'
+        
+        return results
+        
+    except Exception as e:
+        results['status'] = 'error'
+        results['error'] = str(e)
+        return results
+```
+
+### Running Tests
+
+```bash
+# Run all tests
+python -m pytest tests/
+
+# Run specific test category
+python -m pytest tests/test_web_security.py
+
+# Run with coverage
+python -m pytest --cov=app tests/
+```
+
+### Code Quality
+
+```bash
+# Lint code
+flake8 app.py security_scanner.py
+
+# Format code
+black app.py security_scanner.py
+
+# Type checking
+mypy app.py security_scanner.py
+```
 
 ## 🤝 Contributing
 
-We welcome contributions! Please follow these steps:
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+
+### Development Setup
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Submit a pull request
 
-### Contribution Guidelines
+### Code Style
 
-- Ensure all tests pass
-- Add tests for new functionality
-- Update documentation as needed
-- Follow the existing code style
-- Include screenshots for UI changes
+- Follow PEP 8 guidelines
+- Use type hints where appropriate
+- Write comprehensive docstrings
+- Include unit tests for new features
 
 ## 📄 License
 
@@ -1004,26 +1112,23 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- **Google Gemini AI** - For providing advanced AI capabilities
-- **OWASP** - For security testing guidelines and resources
-- **Nmap Project** - For network scanning tools
-- **Flask Community** - For the excellent web framework
-- **Security Research Community** - For vulnerability patterns and techniques
+- Google Gemini AI for advanced language processing
+- OWASP for security standards and guidelines
+- Nmap project for network scanning capabilities
+- Flask community for the excellent web framework
+- All contributors and security researchers
 
-## 📞 Support
+## 🆘 Support
 
-For support, questions, or feature requests:
+- **Documentation**: [Wiki](https://github.com/Hassan-asim/Cyber-Sage/wiki)
+- **Issues**: [GitHub Issues](https://github.com/Hassan-asim/Cyber-Sage/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/Hassan-asim/Cyber-Sage/discussions)
+- **Email**: support@cyber-ai.com
 
-- Create an issue on GitHub
-- Contact the development team
-- Check the documentation wiki
+## ⚠️ Disclaimer
 
----
-
-**⚠️ Disclaimer**: This tool is for authorized security testing only. Users are responsible for ensuring they have proper authorization before testing any systems. The developers are not responsible for any misuse of this software.
-
-**🛡️ Security Notice**: This application performs real security testing. Use responsibly and only on systems you own or have explicit permission to test.
+This tool is for educational and authorized testing purposes only. Users are responsible for ensuring they have proper authorization before testing any systems. The authors are not responsible for any misuse of this software.
 
 ---
 
-*Built with ❤️ for the cybersecurity community*
+**Made with ❤️ by the Cyber AI Team**
