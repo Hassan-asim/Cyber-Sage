@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber AI - Penetration Testing Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Cyber AI</h2>
+                <p>Penetration Testing Platform</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#vulnerabilities" class="nav-item" data-section="vulnerabilities">
+                    <i class="fas fa-bug"></i>
+                    <span>Vulnerabilities</span>
+                </a>
+                <a href="#assessment" class="nav-item" data-section="assessment">
+                    <i class="fas fa-search"></i>
+                    <span>Assessment</span>
+                </a>
+                <a href="#reports" class="nav-item" data-section="reports">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="#cybersage" class="nav-item" data-section="cybersage">
+                    <i class="fas fa-robot"></i>
+                    <span>CyberSage</span>
+                </a>
+                <a href="/website-test" class="nav-item">
+                    <i class="fas fa-globe"></i>
+                    <span>Website Testing</span>
+                </a>
+                <a href="#network-scan" class="nav-item" data-section="network-scan">
+                    <i class="fas fa-network-wired"></i>
+                    <span>Network Scan</span>
+                </a>
+        <a href="#automated-test" class="nav-item" data-section="automated-test">
+            <i class="fas fa-robot"></i>
+            <span>Automated Testing</span>
+        </a>
+        <a href="#vulnerability-scan" class="nav-item" data-section="vulnerability-scan">
+            <i class="fas fa-bug"></i>
+            <span>Vulnerability Scan</span>
+        </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="test-controls">
+                    <button id="startTestBtn" class="btn-test-start">
+                        <i class="fas fa-play"></i>
+                        Start Test
+                    </button>
+                    <button id="endTestBtn" class="btn-test-end" disabled>
+                        <i class="fas fa-stop"></i>
+                        End Test
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="app-header">
+                <div class="header-left">
+                    <h1 id="pageTitle">Dashboard</h1>
+                    <p id="pageSubtitle">Overview of your penetration testing activities</p>
+                </div>
+                <div class="header-right">
+                    <div class="test-status">
+                        <span class="status-indicator" id="testStatus">Inactive</span>
+                    </div>
+                    <button class="btn-back" onclick="window.location.href='/'">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Home
+                    </button>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalVulnerabilities">0</h3>
+                            <p>Vulnerabilities Found</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon critical">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="criticalVulns">0</h3>
+                            <p>Critical Issues</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon high">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="highVulns">0</h3>
+                            <p>High Severity</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="testDuration">0h 0m</h3>
+                            <p>Test Duration</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-content">
+                    <div class="recent-vulnerabilities">
+                        <h3>Recent Vulnerabilities</h3>
+                        <div id="recentVulnsList" class="vuln-list">
+                            <div class="empty-state">
+                                <i class="fas fa-search"></i>
+                                <p>No vulnerabilities found yet</p>
+                                <p>Start by identifying a potential vulnerability</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Vulnerabilities Section -->
+            <section id="vulnerabilities" class="content-section">
+                <div class="section-header">
+                    <h2>Vulnerability Management</h2>
+                    <button class="btn-primary" onclick="showAssessmentModal()">
+                        <i class="fas fa-plus"></i>
+                        Add Vulnerability
+                    </button>
+                </div>
+                
+                <div class="vulnerabilities-list" id="vulnerabilitiesList">
+                    <div class="empty-state">
+                        <i class="fas fa-bug"></i>
+                        <p>No vulnerabilities identified yet</p>
+                        <p>Start your penetration test to begin identifying vulnerabilities</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Assessment Section -->
+            <section id="assessment" class="content-section">
+                <div class="assessment-container">
+                    <h2>Vulnerability Assessment</h2>
+                    <p>Describe a potential vulnerability and let AI analyze it</p>
+                    
+                    <div class="assessment-form">
+                        <div class="form-group">
+                            <label for="vulnDescription">Vulnerability Description</label>
+                            <textarea 
+                                id="vulnDescription" 
+                                placeholder="Describe the potential vulnerability you've discovered..."
+                                rows="6"
+                            ></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button class="btn-primary" onclick="assessVulnerability()">
+                                <i class="fas fa-search"></i>
+                                Analyze Vulnerability
+                            </button>
+                            <button class="btn-secondary" onclick="clearForm()">
+                                <i class="fas fa-times"></i>
+                                Clear
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="assessmentResult" class="assessment-result" style="display: none;">
+                        <!-- Assessment results will be displayed here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports" class="content-section">
+                <div class="reports-container">
+                    <h2>Reports & Documentation</h2>
+                    
+                    <div class="reports-actions">
+                        <button class="btn-primary" onclick="generateVulnReport()">
+                            <i class="fas fa-file-alt"></i>
+                            Generate Vulnerability Report
+                        </button>
+                        <button class="btn-primary" onclick="generateFinalReport()">
+                            <i class="fas fa-file-pdf"></i>
+                            Generate Final Report
+                        </button>
+                    </div>
+                    
+                    <div class="reports-list" id="reportsList">
+                        <div class="empty-state">
+                            <i class="fas fa-file-alt"></i>
+                            <p>No reports generated yet</p>
+                            <p>Generate reports after completing vulnerability assessments</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Network Scan Section -->
+            <section id="network-scan" class="content-section">
+                <div class="network-scan-container">
+                    <h2>Network Security Scanning</h2>
+                    <p>Perform comprehensive network reconnaissance and port scanning</p>
+                    
+                    <div class="scan-form">
+                        <div class="form-group">
+                            <label for="networkTarget">Target IP or Domain</label>
+                            <input type="text" id="networkTarget" placeholder="192.168.1.1 or example.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="scanType">Scan Type</label>
+                            <select id="scanType">
+                                <option value="basic">Basic Scan</option>
+                                <option value="comprehensive">Comprehensive Scan</option>
+                                <option value="stealth">Stealth Scan</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button class="btn-primary" onclick="startNetworkScan()">
+                                <i class="fas fa-search"></i>
+                                Start Network Scan
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="networkResults" class="scan-results" style="display: none;">
+                        <!-- Network scan results will be displayed here -->
+                    </div>
+                </div>
+            </section>
+
+        <!-- Automated Testing Section -->
+        <section id="automated-test" class="content-section">
+            <div class="automated-test-container">
+                <h2>Automated Penetration Testing</h2>
+                <p>Run comprehensive automated security tests across multiple targets</p>
+                
+                <div class="test-form">
+                    <div class="form-group">
+                        <label for="testTargets">Targets (one per line)</label>
+                        <textarea id="testTargets" rows="4" placeholder="https://example.com&#10;192.168.1.1&#10;subdomain.example.com"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="testScope">Test Scope</label>
+                        <select id="testScope">
+                            <option value="comprehensive">Comprehensive</option>
+                            <option value="web-only">Web Applications Only</option>
+                            <option value="network-only">Network Only</option>
+                            <option value="vulnerability-only">Vulnerability Scan Only</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button class="btn-primary" onclick="startAutomatedTest()">
+                            <i class="fas fa-play"></i>
+                            Start Automated Test
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="automatedResults" class="test-results" style="display: none;">
+                    <!-- Automated test results will be displayed here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Vulnerability Scan Section -->
+        <section id="vulnerability-scan" class="content-section">
+            <div class="vulnerability-scan-container">
+                <h2>Advanced Vulnerability Scanning</h2>
+                <p>Perform comprehensive vulnerability assessment using real cybersecurity tools and techniques</p>
+                
+                <div class="scan-form">
+                    <div class="form-group">
+                        <label for="vulnTarget">Target URL or IP</label>
+                        <input type="text" id="vulnTarget" placeholder="https://example.com or 192.168.1.1">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="vulnScanType">Scan Type</label>
+                        <select id="vulnScanType">
+                            <option value="comprehensive">Comprehensive Scan</option>
+                            <option value="web">Web Application Only</option>
+                            <option value="network">Network Only</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="vulnOptions">Advanced Options</label>
+                        <div class="options-grid">
+                            <div class="option-item">
+                                <input type="checkbox" id="sqlInjection" checked>
+                                <label for="sqlInjection">SQL Injection Testing</label>
+                            </div>
+                            <div class="option-item">
+                                <input type="checkbox" id="xssTesting" checked>
+                                <label for="xssTesting">XSS Testing</label>
+                            </div>
+                            <div class="option-item">
+                                <input type="checkbox" id="csrfTesting" checked>
+                                <label for="csrfTesting">CSRF Testing</label>
+                            </div>
+                            <div class="option-item">
+                                <input type="checkbox" id="directoryTraversal" checked>
+                                <label for="directoryTraversal">Directory Traversal</label>
+                            </div>
+                            <div class="option-item">
+                                <input type="checkbox" id="commandInjection" checked>
+                                <label for="commandInjection">Command Injection</label>
+                            </div>
+                            <div class="option-item">
+                                <input type="checkbox" id="xxeTesting" checked>
+                                <label for="xxeTesting">XXE Testing</label>
+                            </div>
+                            <div class="option-item">
+                                <input type="checkbox" id="ssrfTesting" checked>
+                                <label for="ssrfTesting">SSRF Testing</label>
+                            </div>
+                            <div class="option-item">
+                                <input type="checkbox" id="portScanning" checked>
+                                <label for="portScanning">Port Scanning</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button class="btn-primary" onclick="startVulnerabilityScan()">
+                            <i class="fas fa-shield-alt"></i>
+                            Start Vulnerability Scan
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="vulnResults" class="scan-results" style="display: none;">
+                    <!-- Vulnerability scan results will be displayed here -->
+                </div>
+            </div>
+        </section>
+
+            <!-- CyberSage Section -->
+            <section id="cybersage" class="content-section">
+                <div class="cybersage-container">
+                    <div class="cybersage-header">
+                        <h2>CyberSage Assistant</h2>
+                        <p>Your expert cybersecurity consultant</p>
+                    </div>
+                    
+                    <div class="chat-container">
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message bot-message">
+                                <div class="message-avatar">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="message-content">
+                                    <p>🔒 **Welcome to CyberSage!**</p>
+                                    <p>I'm your expert cybersecurity consultant with 15+ years of experience in penetration testing, vulnerability assessment, and security architecture.</p>
+                                    <p>I can help you with:</p>
+                                    <ul>
+                                        <li>🛡️ Vulnerability analysis and remediation</li>
+                                        <li>🔍 Security testing methodologies</li>
+                                        <li>📊 Risk assessment and compliance</li>
+                                        <li>⚙️ Security tool recommendations</li>
+                                        <li>📋 Report generation and documentation</li>
+                                    </ul>
+                                    <p>How can I assist you with your security needs today?</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-input">
+                            <input type="text" id="chatInput" placeholder="Ask me anything about cybersecurity...">
+                            <button onclick="sendMessage()">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Assessment Modal -->
+    <div id="assessmentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Vulnerability</h3>
+                <button class="modal-close" onclick="closeAssessmentModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="modalVulnDescription">Vulnerability Description</label>
+                    <textarea 
+                        id="modalVulnDescription" 
+                        placeholder="Describe the potential vulnerability..."
+                        rows="6"
+                    ></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeAssessmentModal()">Cancel</button>
+                <button class="btn-primary" onclick="assessVulnerabilityFromModal()">Analyze</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Analyzing vulnerability...</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

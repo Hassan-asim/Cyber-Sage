@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber AI - Advanced Penetration Testing Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>Cyber AI</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Advanced <span class="highlight">Penetration Testing</span><br>
+                    Powered by AI
+                </h1>
+                <p class="hero-description">
+                    Comprehensive vulnerability assessment, research, and documentation tool for cybersecurity professionals. 
+                    Leverage AI-powered analysis to identify, assess, and report security vulnerabilities with precision.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="startApp()">
+                        Get Started
+                    </button>
+                    <button class="btn-secondary" onclick="scrollToFeatures()">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="cyber-grid">
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <div class="section-header">
+                <h2>Powerful Features</h2>
+                <p>Everything you need for comprehensive penetration testing</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>AI-Powered Research</h3>
+                    <p>Automated vulnerability research using advanced AI models and real-time web intelligence</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Severity Assessment</h3>
+                    <p>Intelligent CVSS scoring and risk assessment for accurate vulnerability prioritization</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛠️</div>
+                    <h3>Exploit Generation</h3>
+                    <p>Detailed exploit instructions and reproduction steps for each identified vulnerability</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Report Generation</h3>
+                    <p>Professional vulnerability reports and comprehensive penetration test documentation</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>CyberSage Assistant</h3>
+                    <p>Expert cybersecurity chatbot for guidance and technical support during testing</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Progress Tracking</h3>
+                    <p>Real-time tracking of vulnerabilities and comprehensive test management</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Website Security Testing</h3>
+                    <p>Automated web vulnerability scanning with AI-powered analysis and comprehensive reporting</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Agentic AI System</h3>
+                    <p>Multi-agent AI workflow for comprehensive vulnerability research, assessment, and remediation</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Why Choose Cyber AI?</h2>
+                    <p>
+                        Cyber AI revolutionizes penetration testing by combining artificial intelligence with 
+                        comprehensive security research capabilities. Our platform streamlines the entire 
+                        vulnerability assessment process, from initial discovery to final reporting.
+                    </p>
+                    <ul class="benefits-list">
+                        <li>Automated vulnerability research and analysis</li>
+                        <li>AI-powered severity assessment and CVSS scoring</li>
+                        <li>Detailed exploit generation and reproduction steps</li>
+                        <li>Professional report generation and documentation</li>
+                        <li>Expert cybersecurity assistance via CyberSage</li>
+                        <li>Comprehensive penetration test management</li>
+                    </ul>
+                </div>
+                <div class="about-visual">
+                    <div class="workflow-diagram">
+                        <div class="workflow-step">
+                            <div class="step-number">1</div>
+                            <div class="step-text">Identify Vulnerability</div>
+                        </div>
+                        <div class="workflow-arrow">→</div>
+                        <div class="workflow-step">
+                            <div class="step-number">2</div>
+                            <div class="step-text">AI Research</div>
+                        </div>
+                        <div class="workflow-arrow">→</div>
+                        <div class="workflow-step">
+                            <div class="step-number">3</div>
+                            <div class="step-text">Generate Report</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta">
+            <div class="cta-content">
+                <h2>Ready to Enhance Your Security Testing?</h2>
+                <p>Start your comprehensive penetration testing journey with Cyber AI today</p>
+                <button class="btn-primary btn-large" onclick="startApp()">
+                    Launch Cyber AI
+                </button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="contact" class="footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Cyber AI</h3>
+                    <p>Advanced Penetration Testing Platform</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Product</h4>
+                        <a href="#features">Features</a>
+                        <a href="#about">About</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>Support</h4>
+                        <a href="#">Documentation</a>
+                        <a href="#">Help Center</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>Contact</h4>
+                        <a href="#">Email</a>
+                        <a href="#">Support</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Cyber AI. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/landing.js') }}"></script>
+</body>
+</html>

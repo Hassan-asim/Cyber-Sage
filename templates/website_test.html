@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Security Testing - Cyber AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Cyber AI</h2>
+                <p>Website Security Testing</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="/app" class="nav-item">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Main App</span>
+                </a>
+                <a href="#dashboard" class="nav-item" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#website-scan" class="nav-item active" data-section="website-scan">
+                    <i class="fas fa-globe"></i>
+                    <span>Website Scan</span>
+                </a>
+                <a href="#scan-results" class="nav-item" data-section="scan-results">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Scan Results</span>
+                </a>
+                <a href="#reports" class="nav-item" data-section="reports">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="#cybersage" class="nav-item" data-section="cybersage">
+                    <i class="fas fa-robot"></i>
+                    <span>CyberSage</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="test-controls">
+                    <button id="startScanBtn" class="btn-test-start">
+                        <i class="fas fa-play"></i>
+                        Start Scan
+                    </button>
+                    <button id="stopScanBtn" class="btn-test-end" disabled>
+                        <i class="fas fa-stop"></i>
+                        Stop Scan
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="app-header">
+                <div class="header-left">
+                    <h1 id="pageTitle">Website Security Testing</h1>
+                    <p id="pageSubtitle">Comprehensive web vulnerability scanning with AI</p>
+                </div>
+                <div class="header-right">
+                    <div class="test-status">
+                        <span class="status-indicator" id="scanStatus">Ready</span>
+                    </div>
+                    <button class="btn-back" onclick="window.location.href='/app'">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to App
+                    </button>
+                </div>
+            </header>
+
+            <!-- Website Scan Section -->
+            <section id="website-scan" class="content-section active">
+                <div class="scan-container">
+                    <h2>Website Vulnerability Scanner</h2>
+                    <p>Enter a website URL to perform comprehensive security testing using AI-powered analysis</p>
+                    
+                    <div class="scan-form">
+                        <div class="form-group">
+                            <label for="websiteUrl">Website URL</label>
+                            <div class="url-input-container">
+                                <span class="url-prefix">https://</span>
+                                <input 
+                                    type="text" 
+                                    id="websiteUrl" 
+                                    placeholder="example.com"
+                                    class="url-input"
+                                >
+                            </div>
+                        </div>
+                        
+                        <div class="scan-options">
+                            <h3>Scan Options</h3>
+                            <div class="options-grid">
+                                <label class="option-item">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    OWASP Top 10 Testing
+                                </label>
+                                <label class="option-item">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    SQL Injection Testing
+                                </label>
+                                <label class="option-item">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    XSS Testing
+                                </label>
+                                <label class="option-item">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    CSRF Testing
+                                </label>
+                                <label class="option-item">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Security Headers Analysis
+                                </label>
+                                <label class="option-item">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    SSL/TLS Configuration
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button class="btn-primary" onclick="startWebsiteScan()">
+                                <i class="fas fa-search"></i>
+                                Start Security Scan
+                            </button>
+                            <button class="btn-secondary" onclick="clearScanForm()">
+                                <i class="fas fa-times"></i>
+                                Clear
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="scanProgress" class="scan-progress" style="display: none;">
+                        <div class="progress-header">
+                            <h3>Scanning in Progress</h3>
+                            <div class="progress-status">
+                                <span class="status-dot processing"></span>
+                                <span>AI agents are analyzing the website...</span>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="agent-status">
+                            <div class="agent-item">
+                                <span class="agent-badge research">🔍</span>
+                                <span>Research Agent</span>
+                                <span class="agent-status-dot processing"></span>
+                            </div>
+                            <div class="agent-item">
+                                <span class="agent-badge assess">📊</span>
+                                <span>Assessment Agent</span>
+                                <span class="agent-status-dot"></span>
+                            </div>
+                            <div class="agent-item">
+                                <span class="agent-badge remediate">🛠️</span>
+                                <span>Remediation Agent</span>
+                                <span class="agent-status-dot"></span>
+                            </div>
+                            <div class="agent-item">
+                                <span class="agent-badge report">📋</span>
+                                <span>Reporting Agent</span>
+                                <span class="agent-status-dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scan Results Section -->
+            <section id="scan-results" class="content-section">
+                <div class="results-container">
+                    <h2>Scan Results</h2>
+                    <div id="scanResultsList" class="scan-results-list">
+                        <div class="empty-state">
+                            <i class="fas fa-shield-alt"></i>
+                            <p>No scan results yet</p>
+                            <p>Start a website scan to see security analysis results</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports" class="content-section">
+                <div class="reports-container">
+                    <h2>Website Security Reports</h2>
+                    
+                    <div class="reports-actions">
+                        <button class="btn-primary" onclick="generateWebsiteReport()">
+                            <i class="fas fa-file-pdf"></i>
+                            Generate Security Report
+                        </button>
+                    </div>
+                    
+                    <div class="reports-list" id="websiteReportsList">
+                        <div class="empty-state">
+                            <i class="fas fa-file-alt"></i>
+                            <p>No website reports generated yet</p>
+                            <p>Complete a website scan to generate security reports</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CyberSage Section -->
+            <section id="cybersage" class="content-section">
+                <div class="cybersage-container">
+                    <div class="cybersage-header">
+                        <h2>CyberSage Assistant</h2>
+                        <p>Your expert web security consultant</p>
+                    </div>
+                    
+                    <div class="chat-container">
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message bot-message">
+                                <div class="message-avatar">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="message-content">
+                                    <p>Hello! I'm CyberSage, your web security expert. I can help you understand website vulnerabilities, OWASP Top 10, and provide guidance on securing web applications. How can I assist you today?</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-input">
+                            <input type="text" id="chatInput" placeholder="Ask me about web security...">
+                            <button onclick="sendMessage()">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Scanning website for vulnerabilities...</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/website_test.js') }}"></script>
+</body>
+</html>
