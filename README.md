@@ -81,88 +81,118 @@ Cyber AI is a comprehensive penetration testing platform that leverages artifici
 
 ```mermaid
 graph TB
-    subgraph "Frontend Layer"
-        UI[User Interface]
-        LP[Landing Page]
-        DASH[Dashboard]
-        REP[Reports]
-        CHAT[CyberSage Chat]
+    subgraph "🌐 Frontend Layer"
+        UI["🖥️ User Interface"]
+        LP["🏠 Landing Page"]
+        DASH["📊 Dashboard"]
+        REP["📋 Reports"]
+        CHAT["🤖 CyberSage Chat"]
     end
     
-    subgraph "Backend Layer"
-        API[Flask API]
-        SCAN[Security Scanner]
-        AI[AI Analysis Engine]
-        PDF[PDF Generator]
+    subgraph "⚙️ Backend Layer"
+        API["🔌 Flask API"]
+        SCAN["🔍 Security Scanner"]
+        AI["🧠 AI Analysis Engine"]
+        PDF["📄 PDF Generator"]
     end
     
-    subgraph "Data Layer"
-        DB[(SQLite Database)]
-        FILES[Report Files]
-        CACHE[Scan Cache]
+    subgraph "💾 Data Layer"
+        DB[("🗄️ SQLite Database")]
+        FILES["📁 Report Files"]
+        CACHE["⚡ Scan Cache"]
     end
     
-    subgraph "External Services"
-        GEMINI[Google Gemini API]
-        NMAP[Nmap Scanner]
-        DNS[DNS Resolver]
-        TARGET[Target Systems]
+    subgraph "🌍 External Services"
+        GEMINI["🤖 Google Gemini API"]
+        NMAP["🔍 Nmap Scanner"]
+        DNS["🌐 DNS Resolver"]
+        TARGET["🎯 Target Systems"]
     end
     
-    UI --> API
-    LP --> API
-    DASH --> API
-    REP --> API
-    CHAT --> API
+    %% Frontend to Backend connections
+    UI -->|"HTTP Requests"| API
+    LP -->|"Navigation"| API
+    DASH -->|"Scan Commands"| API
+    REP -->|"Report Requests"| API
+    CHAT -->|"AI Queries"| API
     
-    API --> SCAN
-    API --> AI
-    API --> PDF
+    %% Backend internal connections
+    API -->|"Initialize"| SCAN
+    API -->|"Process Data"| AI
+    API -->|"Generate"| PDF
     
-    SCAN --> NMAP
-    SCAN --> DNS
-    SCAN --> TARGET
+    %% Scanner to external services
+    SCAN -->|"Port Scan"| NMAP
+    SCAN -->|"DNS Lookup"| DNS
+    SCAN -->|"Test Targets"| TARGET
     
-    AI --> GEMINI
-    AI --> DB
+    %% AI to external services
+    AI -->|"AI Processing"| GEMINI
+    AI -->|"Store Results"| DB
     
-    PDF --> FILES
-    API --> DB
-    API --> CACHE
+    %% Data connections
+    PDF -->|"Save Reports"| FILES
+    API -->|"Store Data"| DB
+    API -->|"Cache Results"| CACHE
+    
+    %% Styling
+    classDef frontend fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef backend fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef data fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px,color:#000
+    classDef external fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    
+    class UI,LP,DASH,REP,CHAT frontend
+    class API,SCAN,AI,PDF backend
+    class DB,FILES,CACHE data
+    class GEMINI,NMAP,DNS,TARGET external
 ```
 
 ### System Components
 
 ```mermaid
 graph LR
-    subgraph "Client Side"
-        A[HTML5/CSS3/JS]
-        B[Responsive UI]
-        C[Real-time Updates]
+    subgraph "💻 Client Side"
+        A["🌐 HTML5/CSS3/JS"]
+        B["📱 Responsive UI"]
+        C["⚡ Real-time Updates"]
     end
     
-    subgraph "Server Side"
-        D[Flask Framework]
-        E[Security Scanner]
-        F[AI Integration]
-        G[Report Generation]
+    subgraph "🖥️ Server Side"
+        D["🐍 Flask Framework"]
+        E["🔍 Security Scanner"]
+        F["🤖 AI Integration"]
+        G["📊 Report Generation"]
     end
     
-    subgraph "External APIs"
-        H[Gemini AI]
-        I[Security Tools]
-        J[Threat Intelligence]
+    subgraph "🌍 External APIs"
+        H["🧠 Gemini AI"]
+        I["🛡️ Security Tools"]
+        J["📡 Threat Intelligence"]
     end
     
-    A --> D
-    B --> D
-    C --> D
-    D --> E
-    D --> F
-    D --> G
-    F --> H
-    E --> I
-    F --> J
+    %% Client to Server connections
+    A -->|"Frontend Logic"| D
+    B -->|"User Interface"| D
+    C -->|"Live Updates"| D
+    
+    %% Server internal connections
+    D -->|"Orchestrate"| E
+    D -->|"Process"| F
+    D -->|"Generate"| G
+    
+    %% External API connections
+    F -->|"AI Processing"| H
+    E -->|"Security Checks"| I
+    F -->|"Threat Data"| J
+    
+    %% Styling
+    classDef client fill:#e3f2fd,stroke:#0277bd,stroke-width:2px,color:#000
+    classDef server fill:#f1f8e9,stroke:#388e3c,stroke-width:2px,color:#000
+    classDef external fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+    
+    class A,B,C client
+    class D,E,F,G server
+    class H,I,J external
 ```
 
 ### Technology Stack
@@ -181,120 +211,167 @@ graph LR
 
 ```mermaid
 graph TD
-    A[User Access] --> B{Authentication}
-    B -->|Valid| C[Main Dashboard]
-    B -->|Invalid| D[Login Page]
+    A["👤 User Access"] --> B{"🔐 Authentication"}
+    B -->|"✅ Valid"| C["📊 Main Dashboard"]
+    B -->|"❌ Invalid"| D["🔑 Login Page"]
     
-    C --> E[Select Scan Type]
-    E --> F[Website Scan]
-    E --> G[Network Scan]
-    E --> H[Vulnerability Scan]
-    E --> I[Automated Testing]
-    E --> J[CyberSage Chat]
+    C --> E["🎯 Select Scan Type"]
+    E --> F["🌐 Website Scan"]
+    E --> G["🔍 Network Scan"]
+    E --> H["🛡️ Vulnerability Scan"]
+    E --> I["🤖 Automated Testing"]
+    E --> J["💬 CyberSage Chat"]
     
-    F --> K[Advanced Security Scanner]
+    F --> K["🔬 Advanced Security Scanner"]
     G --> K
     H --> K
     I --> K
     
-    K --> L[AI Analysis]
-    L --> M[Generate Report]
-    M --> N[Display Results]
-    N --> O[Export PDF]
+    K --> L["🧠 AI Analysis"]
+    L --> M["📋 Generate Report"]
+    M --> N["📊 Display Results"]
+    N --> O["📄 Export PDF"]
     
-    J --> P[Gemini AI]
-    P --> Q[Expert Response]
-    Q --> R[Display in Chat]
+    J --> P["🤖 Gemini AI"]
+    P --> Q["💡 Expert Response"]
+    Q --> R["💬 Display in Chat"]
+    
+    %% Styling
+    classDef start fill:#e8f5e8,stroke:#2e7d32,stroke-width:3px,color:#000
+    classDef process fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#ef6c00,stroke-width:2px,color:#000
+    classDef scan fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    classDef ai fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+    classDef output fill:#e0f2f1,stroke:#00695c,stroke-width:2px,color:#000
+    
+    class A start
+    class C,E,F,G,H,I process
+    class B decision
+    class K,L scan
+    class J,P,Q,R ai
+    class M,N,O output
 ```
 
 ### 2. Vulnerability Scanning Flow
 
 ```mermaid
 graph TD
-    A[Target Input] --> B[URL Validation]
-    B --> C[Initialize Scanner]
-    C --> D[HTTP Analysis]
-    D --> E[Security Headers Check]
-    E --> F[SSL Certificate Analysis]
-    F --> G[DNS Intelligence]
-    G --> H[Port Scanning]
-    H --> I[Subdomain Discovery]
-    I --> J[Directory Enumeration]
-    J --> K[Vulnerability Testing]
+    A["🎯 Target Input"] --> B["✅ URL Validation"]
+    B --> C["🚀 Initialize Scanner"]
+    C --> D["🌐 HTTP Analysis"]
+    D --> E["🛡️ Security Headers Check"]
+    E --> F["🔒 SSL Certificate Analysis"]
+    F --> G["🌍 DNS Intelligence"]
+    G --> H["🔍 Port Scanning"]
+    H --> I["🔎 Subdomain Discovery"]
+    I --> J["📁 Directory Enumeration"]
+    J --> K["🧪 Vulnerability Testing"]
     
-    K --> L[SQL Injection Tests]
-    K --> M[XSS Tests]
-    K --> N[CSRF Tests]
-    K --> O[Directory Traversal]
-    K --> P[Command Injection]
-    K --> Q[Information Disclosure]
+    K --> L["💉 SQL Injection Tests"]
+    K --> M["❌ XSS Tests"]
+    K --> N["🔄 CSRF Tests"]
+    K --> O["📂 Directory Traversal"]
+    K --> P["⚡ Command Injection"]
+    K --> Q["📊 Information Disclosure"]
     
-    L --> R[AI Analysis]
+    L --> R["🧠 AI Analysis"]
     M --> R
     N --> R
     O --> R
     P --> R
     Q --> R
     
-    R --> S[Generate Report]
-    S --> T[CVSS Scoring]
-    T --> U[Remediation Recommendations]
-    U --> V[PDF Export]
+    R --> S["📋 Generate Report"]
+    S --> T["📊 CVSS Scoring"]
+    T --> U["💡 Remediation Recommendations"]
+    U --> V["📄 PDF Export"]
+    
+    %% Styling
+    classDef input fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef validation fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#000
+    classDef analysis fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    classDef testing fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    classDef vuln fill:#ffebee,stroke:#d32f2f,stroke-width:2px,color:#000
+    classDef ai fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+    classDef output fill:#e0f2f1,stroke:#00695c,stroke-width:2px,color:#000
+    
+    class A input
+    class B,C validation
+    class D,E,F,G,H,I,J analysis
+    class K testing
+    class L,M,N,O,P,Q vuln
+    class R ai
+    class S,T,U,V output
 ```
 
 ### 3. AI-Powered Analysis Flow
 
 ```mermaid
 graph TD
-    A[Vulnerability Data] --> B[Gemini AI Processing]
-    B --> C[Research Phase]
-    C --> D[Knowledge Base Query]
-    D --> E[Internet Research]
-    E --> F[Threat Intelligence]
+    A["📊 Vulnerability Data"] --> B["🤖 Gemini AI Processing"]
+    B --> C["🔍 Research Phase"]
+    C --> D["📚 Knowledge Base Query"]
+    D --> E["🌐 Internet Research"]
+    E --> F["📡 Threat Intelligence"]
     
-    F --> G[Assessment Phase]
-    G --> H[Severity Analysis]
-    H --> I[CVSS Calculation]
-    I --> J[Impact Assessment]
+    F --> G["⚖️ Assessment Phase"]
+    G --> H["📈 Severity Analysis"]
+    H --> I["📊 CVSS Calculation"]
+    I --> J["💥 Impact Assessment"]
     
-    J --> K[Remediation Phase]
-    K --> L[Generate Recommendations]
-    L --> M[Security Controls]
-    M --> N[Implementation Steps]
+    J --> K["🛠️ Remediation Phase"]
+    K --> L["💡 Generate Recommendations"]
+    L --> M["🔒 Security Controls"]
+    M --> N["📋 Implementation Steps"]
     
-    N --> O[Report Generation]
-    O --> P[Executive Summary]
-    P --> Q[Technical Details]
-    Q --> R[Action Items]
+    N --> O["📄 Report Generation"]
+    O --> P["📝 Executive Summary"]
+    P --> Q["🔧 Technical Details"]
+    Q --> R["✅ Action Items"]
+    
+    %% Styling
+    classDef input fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef ai fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+    classDef research fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    classDef assessment fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#000
+    classDef remediation fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    classDef output fill:#e0f2f1,stroke:#00695c,stroke-width:2px,color:#000
+    
+    class A input
+    class B ai
+    class C,D,E,F research
+    class G,H,I,J assessment
+    class K,L,M,N remediation
+    class O,P,Q,R output
 ```
 
 ### 4. Data Flow Diagram
 
 ```mermaid
 flowchart TD
-    A[User Input] --> B[Input Validation]
-    B --> C[Target Analysis]
-    C --> D[Scan Configuration]
-    D --> E[Security Scanner]
+    A["👤 User Input"] --> B["✅ Input Validation"]
+    B --> C["🎯 Target Analysis"]
+    C --> D["⚙️ Scan Configuration"]
+    D --> E["🔍 Security Scanner"]
     
-    E --> F[Web Testing]
-    E --> G[Network Testing]
-    E --> H[Vulnerability Testing]
+    E --> F["🌐 Web Testing"]
+    E --> G["🔍 Network Testing"]
+    E --> H["🛡️ Vulnerability Testing"]
     
-    F --> I[SQL Injection Tests]
-    F --> J[XSS Tests]
-    F --> K[CSRF Tests]
-    F --> L[Directory Traversal]
+    F --> I["💉 SQL Injection Tests"]
+    F --> J["❌ XSS Tests"]
+    F --> K["🔄 CSRF Tests"]
+    F --> L["📂 Directory Traversal"]
     
-    G --> M[Port Scanning]
-    G --> N[DNS Analysis]
-    G --> O[Subdomain Discovery]
+    G --> M["🔍 Port Scanning"]
+    G --> N["🌍 DNS Analysis"]
+    G --> O["🔎 Subdomain Discovery"]
     
-    H --> P[Command Injection]
-    H --> Q[Information Disclosure]
-    H --> R[Session Management]
+    H --> P["⚡ Command Injection"]
+    H --> Q["📊 Information Disclosure"]
+    H --> R["🔐 Session Management"]
     
-    I --> S[Results Aggregation]
+    I --> S["📊 Results Aggregation"]
     J --> S
     K --> S
     L --> S
@@ -305,83 +382,111 @@ flowchart TD
     Q --> S
     R --> S
     
-    S --> T[AI Analysis]
-    T --> U[Gemini Processing]
-    U --> V[Vulnerability Research]
-    V --> W[CVSS Scoring]
-    W --> X[Remediation Guidance]
+    S --> T["🧠 AI Analysis"]
+    T --> U["🤖 Gemini Processing"]
+    U --> V["🔍 Vulnerability Research"]
+    V --> W["📊 CVSS Scoring"]
+    W --> X["💡 Remediation Guidance"]
     
-    X --> Y[Report Generation]
-    Y --> Z[PDF Export]
-    Z --> AA[User Display]
+    X --> Y["📋 Report Generation"]
+    Y --> Z["📄 PDF Export"]
+    Z --> AA["👁️ User Display"]
+    
+    %% Styling
+    classDef input fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef validation fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#000
+    classDef scanner fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    classDef testing fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    classDef vuln fill:#ffebee,stroke:#d32f2f,stroke-width:2px,color:#000
+    classDef aggregation fill:#e0f2f1,stroke:#00695c,stroke-width:2px,color:#000
+    classDef ai fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+    classDef output fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px,color:#000
+    
+    class A input
+    class B,C,D validation
+    class E scanner
+    class F,G,H testing
+    class I,J,K,L,M,N,O,P,Q,R vuln
+    class S aggregation
+    class T,U,V,W,X ai
+    class Y,Z,AA output
 ```
 
 ### 5. Security Testing Workflow
 
 ```mermaid
 sequenceDiagram
-    participant U as User
-    participant F as Frontend
-    participant A as API
-    participant S as Scanner
-    participant AI as Gemini AI
-    participant R as Report Generator
+    participant U as 👤 User
+    participant F as 🖥️ Frontend
+    participant A as 🔌 API
+    participant S as 🔍 Scanner
+    participant AI as 🤖 Gemini AI
+    participant R as 📄 Report Generator
     
-    U->>F: Enter target URL
-    F->>A: POST /api/vulnerability/scan
-    A->>S: Initialize scanner
-    S->>S: HTTP Analysis
-    S->>S: Security Headers Check
-    S->>S: SSL Certificate Analysis
-    S->>S: DNS Intelligence
-    S->>S: Port Scanning
-    S->>S: Vulnerability Testing
-    S->>A: Return scan results
-    A->>AI: Send vulnerability data
-    AI->>AI: Process with Gemini
-    AI->>A: Return AI analysis
-    A->>R: Generate report
-    R->>R: Create PDF
-    R->>A: Return report
-    A->>F: Return complete results
-    F->>U: Display results
+    U->>F: 🎯 Enter target URL
+    F->>A: 📤 POST /api/vulnerability/scan
+    A->>S: 🚀 Initialize scanner
+    S->>S: 🌐 HTTP Analysis
+    S->>S: 🛡️ Security Headers Check
+    S->>S: 🔒 SSL Certificate Analysis
+    S->>S: 🌍 DNS Intelligence
+    S->>S: 🔍 Port Scanning
+    S->>S: 🧪 Vulnerability Testing
+    S->>A: 📊 Return scan results
+    A->>AI: 📤 Send vulnerability data
+    AI->>AI: 🧠 Process with Gemini
+    AI->>A: 📥 Return AI analysis
+    A->>R: 📋 Generate report
+    R->>R: 📄 Create PDF
+    R->>A: 📥 Return report
+    A->>F: 📤 Return complete results
+    F->>U: 👁️ Display results
 ```
 
 ## 🔄 Context Diagram
 
 ```mermaid
 graph TB
-    subgraph "External Systems"
-        U[Users]
-        G[Google Gemini API]
-        T[Target Websites]
-        N[Network Infrastructure]
-        CVE[CVE Database]
-        OWASP[OWASP Resources]
+    subgraph "🌍 External Systems"
+        U["👥 Users"]
+        G["🤖 Google Gemini API"]
+        T["🌐 Target Websites"]
+        N["🔗 Network Infrastructure"]
+        CVE["📊 CVE Database"]
+        OWASP["🛡️ OWASP Resources"]
     end
     
-    subgraph "Cyber AI Platform"
-        UI[User Interface]
-        API[Flask API]
-        SC[Security Scanner]
-        AI[AI Analysis Engine]
-        DB[(SQLite Database)]
-        PDF[PDF Generator]
+    subgraph "🛡️ Cyber AI Platform"
+        UI["🖥️ User Interface"]
+        API["🔌 Flask API"]
+        SC["🔍 Security Scanner"]
+        AI["🧠 AI Analysis Engine"]
+        DB[("🗄️ SQLite Database")]
+        PDF["📄 PDF Generator"]
     end
     
-    U -->|Access| UI
-    UI -->|Requests| API
-    API -->|Scan Commands| SC
-    SC -->|Test| T
-    SC -->|Scan| N
-    API -->|AI Requests| AI
-    AI -->|Query| G
-    AI -->|Research| CVE
-    AI -->|Standards| OWASP
-    AI -->|Store Results| DB
-    API -->|Generate| PDF
-    PDF -->|Download| U
-    UI -->|Display| U
+    U -->|"👤 Access"| UI
+    UI -->|"📤 Requests"| API
+    API -->|"🎯 Scan Commands"| SC
+    SC -->|"🧪 Test"| T
+    SC -->|"🔍 Scan"| N
+    API -->|"🤖 AI Requests"| AI
+    AI -->|"🔍 Query"| G
+    AI -->|"📚 Research"| CVE
+    AI -->|"📋 Standards"| OWASP
+    AI -->|"💾 Store Results"| DB
+    API -->|"📋 Generate"| PDF
+    PDF -->|"⬇️ Download"| U
+    UI -->|"👁️ Display"| U
+    
+    %% Styling
+    classDef external fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef platform fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef database fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    
+    class U,G,T,N,CVE,OWASP external
+    class UI,API,SC,AI,PDF platform
+    class DB database
 ```
 
 ## 🧪 Test Cases
