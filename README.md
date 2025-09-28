@@ -72,90 +72,64 @@ Cyber AI is a comprehensive penetration testing platform that leverages artifici
 
 ### System Architecture Diagram
 
-```mermaid
-graph TB
-    subgraph "Frontend Layer"
-        UI[User Interface]
-        LP[Landing Page]
-        DASH[Dashboard]
-        REP[Reports]
-        CHAT[CyberSage Chat]
-    end
-    
-    subgraph "Backend Layer"
-        API[Flask API]
-        SCAN[Security Scanner]
-        AI[AI Analysis Engine]
-        PDF[PDF Generator]
-    end
-    
-    subgraph "Data Layer"
-        DB[(SQLite Database)]
-        FILES[Report Files]
-        CACHE[Scan Cache]
-    end
-    
-    subgraph "External Services"
-        GEMINI[Google Gemini API]
-        NMAP[Nmap Scanner]
-        DNS[DNS Resolver]
-        TARGET[Target Systems]
-    end
-    
-    UI --> API
-    LP --> API
-    DASH --> API
-    REP --> API
-    CHAT --> API
-    
-    API --> SCAN
-    API --> AI
-    API --> PDF
-    
-    SCAN --> NMAP
-    SCAN --> DNS
-    SCAN --> TARGET
-    
-    AI --> GEMINI
-    AI --> DB
-    
-    PDF --> FILES
-    API --> DB
-    API --> CACHE
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Frontend Layer                           │
+├─────────────────────────────────────────────────────────────┤
+│  User Interface → Landing Page → Dashboard                  │
+│  ├─ Reports      ├─ CyberSage Chat                         │
+│  └─ API Calls    └─ Feature Modules                        │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    Backend Layer                            │
+├─────────────────────────────────────────────────────────────┤
+│  Flask API → Security Scanner → AI Analysis Engine          │
+│  └─ PDF Generator    ├─ Network Tools                      │
+│                      ├─ Web Scanners                       │
+│                      └─ Vulnerability Detection             │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    Data Layer                               │
+├─────────────────────────────────────────────────────────────┤
+│  SQLite Database  Report Files  Scan Cache                 │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                 External Services                           │
+├─────────────────────────────────────────────────────────────┤
+│  Google Gemini API  Nmap Scanner  DNS Resolver  Target     │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ### System Components
 
-```mermaid
-graph LR
-    subgraph "Client Side"
-        A[HTML5/CSS3/JS]
-        B[Responsive UI]
-        C[Real-time Updates]
-    end
-    
-    subgraph "Server Side"
-        D[Flask Framework]
-        E[Security Scanner]
-        F[AI Integration]
-        G[Report Generation]
-    end
-    
-    subgraph "External APIs"
-        H[Gemini AI]
-        I[Security Tools]
-        J[Threat Intelligence]
-    end
-    
-    A --> D
-    B --> D
-    C --> D
-    D --> E
-    D --> F
-    D --> G
-    F --> H
-    E --> I
-    F --> J
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Client Side                              │
+├─────────────────────────────────────────────────────────────┤
+│  HTML5/CSS3/JS → Responsive UI → Real-time Updates         │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    Server Side                              │
+├─────────────────────────────────────────────────────────────┤
+│  Flask Framework → Security Scanner → AI Integration        │
+│  └─ Report Generation    ├─ Security Tools                 │
+│                          └─ Threat Intelligence             │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                  External APIs                              │
+├─────────────────────────────────────────────────────────────┤
+│  Gemini AI  Security Tools  Threat Intelligence             │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ### Technology Stack
@@ -172,209 +146,166 @@ graph LR
 
 ### 1. Main Application Flow
 
-```mermaid
-graph TD
-    A[User Access] --> B{Authentication}
-    B -->|Valid| C[Main Dashboard]
-    B -->|Invalid| D[Login Page]
-    
-    C --> E[Select Scan Type]
-    E --> F[Website Scan]
-    E --> G[Network Scan]
-    E --> H[Vulnerability Scan]
-    E --> I[Automated Testing]
-    E --> J[CyberSage Chat]
-    
-    F --> K[Advanced Security Scanner]
-    G --> K
-    H --> K
-    I --> K
-    
-    K --> L[AI Analysis]
-    L --> M[Generate Report]
-    M --> N[Display Results]
-    N --> O[Export PDF]
-    
-    J --> P[Gemini AI]
-    P --> Q[Expert Response]
-    Q --> R[Display in Chat]
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Main Application Flow                    │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  User Access → Authentication → Main Dashboard              │
+│                      │                                      │
+│                      ▼                                      │
+│  Select Scan Type → Advanced Security Scanner → AI Analysis │
+│  ├─ Website Scan    ├─ Network Scan                        │
+│  ├─ Vulnerability   ├─ Automated Testing                   │
+│     Scan            └─ CyberSage Chat                      │
+│                                                             │
+│  AI Analysis → Generate Report → Display Results → Export   │
+│  └─ Gemini AI → Expert Response → Display in Chat          │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ### 2. Vulnerability Scanning Flow
 
-```mermaid
-graph TD
-    A[Target Input] --> B[URL Validation]
-    B --> C[Initialize Scanner]
-    C --> D[HTTP Analysis]
-    D --> E[Security Headers Check]
-    E --> F[SSL Certificate Analysis]
-    F --> G[DNS Intelligence]
-    G --> H[Port Scanning]
-    H --> I[Subdomain Discovery]
-    I --> J[Directory Enumeration]
-    J --> K[Vulnerability Testing]
-    
-    K --> L[SQL Injection Tests]
-    K --> M[XSS Tests]
-    K --> N[CSRF Tests]
-    K --> O[Directory Traversal]
-    K --> P[Command Injection]
-    K --> Q[Information Disclosure]
-    
-    L --> R[AI Analysis]
-    M --> R
-    N --> R
-    O --> R
-    P --> R
-    Q --> R
-    
-    R --> S[Generate Report]
-    S --> T[CVSS Scoring]
-    T --> U[Remediation Recommendations]
-    U --> V[PDF Export]
+```
+┌─────────────────────────────────────────────────────────────┐
+│                Vulnerability Scanning Flow                  │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  Target Input → URL Validation → Initialize Scanner         │
+│                                                             │
+│  HTTP Analysis → Security Headers → SSL Certificate        │
+│  └─ DNS Intelligence → Port Scanning → Subdomain Discovery  │
+│     └─ Directory Enumeration → Vulnerability Testing       │
+│                                                             │
+│  Vulnerability Testing:                                     │
+│  ├─ SQL Injection Tests    ├─ XSS Tests                    │
+│  ├─ CSRF Tests            ├─ Directory Traversal           │
+│  ├─ Command Injection     └─ Information Disclosure        │
+│                                                             │
+│  All Tests → AI Analysis → Generate Report → CVSS Scoring  │
+│  └─ Remediation Recommendations → PDF Export               │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ### 3. AI-Powered Analysis Flow
 
-```mermaid
-graph TD
-    A[Vulnerability Data] --> B[Gemini AI Processing]
-    B --> C[Research Phase]
-    C --> D[Knowledge Base Query]
-    D --> E[Internet Research]
-    E --> F[Threat Intelligence]
-    
-    F --> G[Assessment Phase]
-    G --> H[Severity Analysis]
-    H --> I[CVSS Calculation]
-    I --> J[Impact Assessment]
-    
-    J --> K[Remediation Phase]
-    K --> L[Generate Recommendations]
-    L --> M[Security Controls]
-    M --> N[Implementation Steps]
-    
-    N --> O[Report Generation]
-    O --> P[Executive Summary]
-    P --> Q[Technical Details]
-    Q --> R[Action Items]
+```
+┌─────────────────────────────────────────────────────────────┐
+│                AI-Powered Analysis Flow                     │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  Vulnerability Data → Gemini AI Processing                  │
+│                                                             │
+│  Research Phase:                                            │
+│  ├─ Knowledge Base Query → Internet Research               │
+│  └─ Threat Intelligence                                    │
+│                                                             │
+│  Assessment Phase:                                          │
+│  ├─ Severity Analysis → CVSS Calculation                   │
+│  └─ Impact Assessment                                      │
+│                                                             │
+│  Remediation Phase:                                         │
+│  ├─ Generate Recommendations → Security Controls           │
+│  └─ Implementation Steps                                   │
+│                                                             │
+│  Report Generation:                                         │
+│  ├─ Executive Summary → Technical Details                  │
+│  └─ Action Items                                          │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ### 4. Data Flow Diagram
 
-```mermaid
-flowchart TD
-    A[User Input] --> B[Input Validation]
-    B --> C[Target Analysis]
-    C --> D[Scan Configuration]
-    D --> E[Security Scanner]
-    
-    E --> F[Web Testing]
-    E --> G[Network Testing]
-    E --> H[Vulnerability Testing]
-    
-    F --> I[SQL Injection Tests]
-    F --> J[XSS Tests]
-    F --> K[CSRF Tests]
-    F --> L[Directory Traversal]
-    
-    G --> M[Port Scanning]
-    G --> N[DNS Analysis]
-    G --> O[Subdomain Discovery]
-    
-    H --> P[Command Injection]
-    H --> Q[Information Disclosure]
-    H --> R[Session Management]
-    
-    I --> S[Results Aggregation]
-    J --> S
-    K --> S
-    L --> S
-    M --> S
-    N --> S
-    O --> S
-    P --> S
-    Q --> S
-    R --> S
-    
-    S --> T[AI Analysis]
-    T --> U[Gemini Processing]
-    U --> V[Vulnerability Research]
-    V --> W[CVSS Scoring]
-    W --> X[Remediation Guidance]
-    
-    X --> Y[Report Generation]
-    Y --> Z[PDF Export]
-    Z --> AA[User Display]
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Data Flow Diagram                        │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  User Input → Input Validation → Target Analysis            │
+│  └─ Scan Configuration → Security Scanner                   │
+│                                                             │
+│  Security Scanner:                                          │
+│  ├─ Web Testing:                                           │
+│  │  ├─ SQL Injection Tests  ├─ XSS Tests                   │
+│  │  ├─ CSRF Tests          └─ Directory Traversal          │
+│  │                                                         │
+│  ├─ Network Testing:                                       │
+│  │  ├─ Port Scanning       ├─ DNS Analysis                 │
+│  │  └─ Subdomain Discovery                                 │
+│  │                                                         │
+│  └─ Vulnerability Testing:                                 │
+│     ├─ Command Injection    ├─ Information Disclosure      │
+│     └─ Session Management                                   │
+│                                                             │
+│  All Results → Results Aggregation → AI Analysis           │
+│  └─ Gemini Processing → Vulnerability Research             │
+│     └─ CVSS Scoring → Remediation Guidance                 │
+│                                                             │
+│  Report Generation → PDF Export → User Display             │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ### 5. Security Testing Workflow
 
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant F as Frontend
-    participant A as API
-    participant S as Scanner
-    participant AI as Gemini AI
-    participant R as Report Generator
-    
-    U->>F: Enter target URL
-    F->>A: POST /api/vulnerability/scan
-    A->>S: Initialize scanner
-    S->>S: HTTP Analysis
-    S->>S: Security Headers Check
-    S->>S: SSL Certificate Analysis
-    S->>S: DNS Intelligence
-    S->>S: Port Scanning
-    S->>S: Vulnerability Testing
-    S->>A: Return scan results
-    A->>AI: Send vulnerability data
-    AI->>AI: Process with Gemini
-    AI->>A: Return AI analysis
-    A->>R: Generate report
-    R->>R: Create PDF
-    R->>A: Return report
-    A->>F: Return complete results
-    F->>U: Display results
+```
+┌─────────────────────────────────────────────────────────────┐
+│                Security Testing Workflow                    │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  User → Frontend → API → Scanner → AI → Report Generator    │
+│                                                             │
+│  Step-by-Step Process:                                      │
+│  1. User enters target URL                                  │
+│  2. Frontend sends POST /api/vulnerability/scan            │
+│  3. API initializes scanner                                 │
+│  4. Scanner performs:                                       │
+│     ├─ HTTP Analysis                                        │
+│     ├─ Security Headers Check                              │
+│     ├─ SSL Certificate Analysis                            │
+│     ├─ DNS Intelligence                                    │
+│     ├─ Port Scanning                                       │
+│     └─ Vulnerability Testing                               │
+│  5. Scanner returns results to API                         │
+│  6. API sends vulnerability data to AI                     │
+│  7. AI processes with Gemini                               │
+│  8. AI returns analysis to API                             │
+│  9. API generates report                                   │
+│  10. Report Generator creates PDF                          │
+│  11. Complete results returned to user                     │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ## 🔄 Context Diagram
 
-```mermaid
-graph TB
-    subgraph "External Systems"
-        U[Users]
-        G[Google Gemini API]
-        T[Target Websites]
-        N[Network Infrastructure]
-        CVE[CVE Database]
-        OWASP[OWASP Resources]
-    end
-    
-    subgraph "Cyber AI Platform"
-        UI[User Interface]
-        API[Flask API]
-        SC[Security Scanner]
-        AI[AI Analysis Engine]
-        DB[(SQLite Database)]
-        PDF[PDF Generator]
-    end
-    
-    U -->|Access| UI
-    UI -->|Requests| API
-    API -->|Scan Commands| SC
-    SC -->|Test| T
-    SC -->|Scan| N
-    API -->|AI Requests| AI
-    AI -->|Query| G
-    AI -->|Research| CVE
-    AI -->|Standards| OWASP
-    AI -->|Store Results| DB
-    API -->|Generate| PDF
-    PDF -->|Download| U
-    UI -->|Display| U
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Context Diagram                          │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  External Systems:                                          │
+│  ├─ Users              ├─ Google Gemini API                │
+│  ├─ Target Websites    ├─ Network Infrastructure           │
+│  ├─ CVE Database       └─ OWASP Resources                  │
+│                                                             │
+│  Cyber AI Platform:                                         │
+│  ├─ User Interface → Flask API → Security Scanner           │
+│  ├─ AI Analysis Engine → SQLite Database                   │
+│  └─ PDF Generator                                          │
+│                                                             │
+│  Data Flow:                                                 │
+│  Users → User Interface → Flask API → Security Scanner      │
+│  Security Scanner → Target Websites & Network Infrastructure │
+│  Flask API → AI Analysis Engine → Google Gemini API        │
+│  AI Analysis Engine → CVE Database & OWASP Resources       │
+│  AI Analysis Engine → SQLite Database                      │
+│  Flask API → PDF Generator → Users                         │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ## 🧪 Test Cases
