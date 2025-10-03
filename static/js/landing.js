@@ -877,3 +877,69 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Navbar Glass Effect on Scroll
+document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.getElementById('navbar');
+    const navbarContent = document.getElementById('navbar-content');
+
+    if (navbar && navbarContent) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                // Apply glass effect on scroll
+                navbarContent.classList.remove('bg-white', 'border-gray-200', 'shadow-lg');
+                navbarContent.classList.add('bg-white/5', 'backdrop-blur-xl', 'border-white/20', 'shadow-[0_8px_32px_0px_rgba(31,38,135,0.37)]');
+
+                // Change text colors for glass background
+                const navLinks = navbarContent.querySelectorAll('a:not(.bg-orange-500)');
+                const icons = navbarContent.querySelectorAll('svg');
+
+                navLinks.forEach(link => {
+                    link.classList.remove('text-gray-600', 'hover:text-gray-900');
+                    link.classList.add('text-white/90', 'hover:text-white');
+                });
+
+                icons.forEach(icon => {
+                    icon.classList.remove('text-gray-600', 'text-gray-400');
+                    icon.classList.add('text-white/90');
+                });
+
+                // Update login button for glass background
+                const loginBtn = navbarContent.querySelector('a[title="Log in"]');
+                if (loginBtn) {
+                    loginBtn.classList.remove('border-gray-300', 'bg-white', 'text-gray-600', 'hover:bg-gray-50', 'hover:border-gray-400');
+                    loginBtn.classList.add('border-white/20', 'bg-white/10', 'text-white', 'hover:bg-white/15', 'hover:border-white/30', 'backdrop-blur-sm');
+                }
+            } else {
+                // Return to solid white background
+                navbarContent.classList.remove('bg-white/5', 'backdrop-blur-xl', 'border-white/20', 'shadow-[0_8px_32px_0px_rgba(31,38,135,0.37)]');
+                navbarContent.classList.add('bg-white', 'border-gray-200', 'shadow-lg');
+
+                // Change text colors back for white background
+                const navLinks = navbarContent.querySelectorAll('a:not(.bg-orange-500)');
+                const icons = navbarContent.querySelectorAll('svg');
+
+                navLinks.forEach(link => {
+                    link.classList.remove('text-white/90', 'hover:text-white');
+                    link.classList.add('text-gray-600', 'hover:text-gray-900');
+                });
+
+                icons.forEach(icon => {
+                    icon.classList.remove('text-white/90');
+                    if (icon.classList.contains('text-gray-400') === false) {
+                        icon.classList.add('text-gray-600');
+                    } else {
+                        icon.classList.add('text-gray-400');
+                    }
+                });
+
+                // Update login button for white background
+                const loginBtn = navbarContent.querySelector('a[title="Log in"]');
+                if (loginBtn) {
+                    loginBtn.classList.remove('border-white/20', 'bg-white/10', 'text-white', 'hover:bg-white/15', 'hover:border-white/30', 'backdrop-blur-sm');
+                    loginBtn.classList.add('border-gray-300', 'bg-white', 'text-gray-600', 'hover:bg-gray-50', 'hover:border-gray-400');
+                }
+            }
+        });
+    }
+});
