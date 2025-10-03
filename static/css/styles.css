@@ -1,0 +1,149 @@
+/* Additional custom styles for the HTML landing page */
+
+/* Ensure smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Loading state */
+body:not(.loaded) {
+    opacity: 0;
+}
+
+body.loaded {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Enhanced spotlight effect */
+.spotlight-card {
+    transition: transform 0.2s ease-out;
+}
+
+.spotlight-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Video modal enhancements */
+.modal {
+    backdrop-filter: blur(4px);
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal.active {
+    opacity: 1;
+}
+
+.modal:not(.active) {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    transform: scale(0.95);
+    transition: transform 0.3s ease-out;
+}
+
+.modal.active .modal-content {
+    transform: scale(1);
+}
+
+/* Button hover effects */
+.btn:hover,
+.btn-sm:hover {
+    transform: translateY(-1px);
+}
+
+/* Enhanced gradient text animation */
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 6s ease infinite;
+}
+
+/* Focus states for accessibility */
+.btn:focus,
+.btn-sm:focus,
+button:focus,
+a:focus {
+    outline: 2px solid rgba(99, 102, 241, 0.5);
+    outline-offset: 2px;
+}
+
+/* Improved mobile experience */
+@media (max-width: 768px) {
+    .spotlight-card {
+        margin-bottom: 1rem;
+    }
+
+    .modal {
+        padding: 1rem;
+    }
+
+    .modal-content {
+        border-radius: 0.5rem;
+    }
+}
+
+/* Performance optimizations */
+.spotlight-card::before,
+.spotlight-card::after {
+    will-change: opacity, transform;
+    backface-visibility: hidden;
+}
+
+/* Print styles */
+@media print {
+    .modal,
+    video,
+    button {
+        display: none !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .text-indigo-200\/65 {
+        color: rgb(199, 210, 254);
+    }
+
+    .bg-gray-900\/90 {
+        background-color: rgb(17, 24, 39);
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .animate-gradient {
+        animation: none;
+    }
+
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(17, 24, 39);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(75, 85, 99);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(99, 102, 241);
+}

@@ -3,16 +3,239 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cyber AI - Advanced Penetration Testing Platform</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Orange Sage</title>
+    <meta name="description" content="AI-driven tools for product teams" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" />
+
+    <!-- Custom Fonts -->
+    <style>
+      @font-face {
+        font-family: "Nacelle";
+        src: url("{{ url_for('static', filename='fonts/nacelle-regular.woff2') }}") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Nacelle";
+        src: url("{{ url_for('static', filename='fonts/nacelle-italic.woff2') }}") format("woff2");
+        font-weight: 400;
+        font-style: italic;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Nacelle";
+        src: url("{{ url_for('static', filename='fonts/nacelle-semibold.woff2') }}") format("woff2");
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Nacelle";
+        src: url("{{ url_for('static', filename='fonts/nacelle-semibolditalic.woff2') }}") format("woff2");
+        font-weight: 600;
+        font-style: italic;
+        font-display: swap;
+      }
+
+      /* Custom CSS Variables and Styles */
+      :root {
+        --font-inter: "Inter", sans-serif;
+        --font-nacelle: "Nacelle", sans-serif;
+      }
+
+      /* Custom Tailwind Configuration */
+      .font-nacelle {
+        font-family: var(--font-nacelle);
+      }
+
+      /* Custom animations */
+      @keyframes gradient {
+        to {
+          background-position: 200% center;
+        }
+      }
+
+      .animate-gradient {
+        animation: gradient 6s linear infinite;
+      }
+
+      /* Button styles */
+      .btn,
+      .btn-sm {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
+
+      .btn {
+        padding: 11px 16px;
+      }
+
+      .btn-sm {
+        padding: 7px 12px;
+      }
+
+      /* Custom backdrop blur */
+      .backdrop-blur-xs {
+        backdrop-filter: blur(2px);
+      }
+
+      /* Custom AOS animations */
+      @media screen {
+        html:not(.no-js) body [data-aos="fade-up"] {
+          transform: translate3d(0, 10px, 0);
+        }
+      }
+
+      /* Spotlight effect */
+      .spotlight-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 1rem;
+        background: rgb(31 41 55);
+        padding: 1px;
+      }
+
+      .spotlight-card::before {
+        content: "";
+        position: absolute;
+        left: -160px;
+        top: -160px;
+        z-index: 10;
+        height: 320px;
+        width: 320px;
+        border-radius: 50%;
+        background: rgba(99, 102, 241, 0.8);
+        opacity: 0;
+        filter: blur(48px);
+        transition: opacity 0.5s;
+        pointer-events: none;
+      }
+
+      .spotlight-card::after {
+        content: "";
+        position: absolute;
+        left: -192px;
+        top: -192px;
+        z-index: 30;
+        height: 256px;
+        width: 256px;
+        border-radius: 50%;
+        background: rgb(99, 102, 241);
+        opacity: 0;
+        filter: blur(48px);
+        transition: opacity 0.5s;
+        pointer-events: none;
+      }
+
+      .spotlight-card:hover::before {
+        opacity: 1;
+      }
+
+      .spotlight-card:hover::after {
+        opacity: 0.2;
+      }
+
+      /* Mobile menu styles */
+      .mobile-menu {
+        display: none;
+      }
+
+      .mobile-menu.active {
+        display: block;
+      }
+
+      /* Modal styles */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 99999;
+        padding: 24px;
+      }
+
+      .modal.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-content {
+        background: black;
+        border-radius: 1rem;
+        max-width: 1152px;
+        width: 100%;
+        aspect-ratio: 16/9;
+        max-height: 100%;
+        overflow: hidden;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+
+      .modal video {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+
+    <!-- Tailwind Config -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              inter: ["Inter", "sans-serif"],
+              nacelle: ["Nacelle", "sans-serif"],
+            },
+            colors: {
+              gray: {
+                50: "#f9fafb",
+                200: "#e5e7eb",
+                300: "#d1d5db",
+                600: "#4b5563",
+                700: "#374151",
+                800: "#1f2937",
+                900: "#111827",
+                950: "#030712",
+              },
+              orange: {
+                200: "#c7d2fe",
+                // 300: "#a5b4fc",
+                // 500: "#6366f1",
+                // 600: "#4f46e5",
+
+                // 200: '#ffc499', // soft peachy pastel
+                300: "#ffb377", // warm pastel orange
+                500: "#ff964f", // your reference orange
+                600: "#e6783d", // deeper orange for contrast
+              },
+            },
+          },
+        },
+      };
+    </script>
   </head>
-  <body>
-    <div class="relative h-[dvh]">
-      <img
-        class="absolute left-0 top-0 -z-20 h-full w-full object-cover"
-        src="https://tailkits.com/ui/iframe/assets/img/bg-5.png"
-        alt="Background image"
-      />
+  <body class="bg-gray-950 font-inter text-base text-gray-200 antialiased">
+    <div class="flex min-h-screen flex-col overflow-hidden">
+      <!-- Header -->
       <header class="py-3">
         <div class="max-w-7xl mx-auto px-4 xl:px-0">
           <div
@@ -251,904 +474,964 @@
         </div>
       </div>
 
-      <section
-        class="min-h-[calc(100vh-5rem)] flex items-center justify-center py-8 sm:py-16 lg:pb-24"
-      >
+      <!-- Main Content -->
+      <main class="relative flex grow flex-col">
+        <!-- Page illustration -->
         <div
-          class="max-w-7xl mx-auto px-4 xl:px-0 flex flex-col items-center text-center"
+          class="pointer-events-none absolute left-1/2 top-0 -z-10 -translate-x-1/2 -translate-y-1/2"
+          aria-hidden="true"
         >
-          <figure
-            class="relative h-52 w-full overflow-hidden after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-white sm:h-80 md:after:left-4 md:after:right-4 lg:h-96 lg:after:left-8 lg:after:right-8 xl:after:left-10 xl:after:right-10"
-          >
-            <img
-              class="absolute -bottom-6 left-1/2 h-60 w-11/12 -translate-x-1/2 rounded-md border-4 border-slate-900/5 object-cover object-left-top shadow-[0_2px_10px_0px_rgba(0,0,0,0.15)] sm:h-80 sm:w-5/6 lg:h-96 lg:w-2/3 lg:rounded-2xl"
-                            src="{{ url_for('static', filename='pic.png') }}"
+          <img
+            class="max-w-none"
+            src="{{ url_for('static', filename='images/page-illustration.svg') }}"
+            width="1440"
+            height="1214"
+            alt="Page Illustration"
+          />
+        </div>
+        <!-- Removed invalid React-style div and empty ruleset -->
+        <div class="min-h-screen w-full  relative">
+          <!-- Orange Radial Glow Background -->
+         <div
+  class="absolute inset-0 z-0 hidden md:block"
+  style="
+    background-image: radial-gradient(
+      circle 500px at 50% 100px,
+      rgba(249, 115, 22, 0.4),
+      transparent
+    );
+  "
+></div>
 
-              alt="Browser mockup"
-            />
-          </figure>
-          <div
-            class="items-center justify-center rounded-full text-sm font-medium whitespace-nowrap shadow-[0_2px_10px_0px_rgba(0,0,0,0.15)] inline-flex bg-slate-900 text-white px-2.5 py-1 mt-8 md:mt-12 xl:mt-16"
-          >
-            Introducing Cyber Sage
-          </div>
-          <div
-            class="bg-gradient-to-b from-slate-800 to-slate-600 bg-clip-text text-3xl font-semibold text-transparent lg:text-5xl mt-4 sm:mx-auto sm:w-2/3 lg:mt-6 lg:leading-tight"
-          >
-            PenTesting Renaissance: Where Agentic System Meets Impact
-          </div>
-          <p
-            class="mt-4 font-medium text-slate-600 sm:mx-auto sm:w-2/3 md:w-1/2 lg:mx-0 lg:mt-6 lg:w-2/5"
-          >
-            Rediscover the renaissance of SaaS design and craft exquisite
-            solutions that make a lasting impact
-          </p>
-        </div>
-      </section>
-    </div>
+          <!-- Your Content/Components -->
 
-    <section class="pt-12 lg:pt-16 pb-8 md:pb-12 lg:pb-16">
-      <div class="max-w-7xl mx-auto px-4 xl:px-0">
-        <div class="flex flex-col items-center">
-          <div
-            class="items-center justify-center rounded-full text-sm font-medium whitespace-nowrap shadow-[0_2px_10px_0px_rgba(0,0,0,0.15)] inline-flex bg-white text-neutral-700 px-2.5 py-1"
-          >
-            Technology
-          </div>
-          <div
-            class="mt-6 bg-gradient-to-b from-slate-800 to-slate-600 bg-clip-text text-center text-3xl font-semibold text-transparent sm:mx-auto sm:w-2/3 md:w-1/2 lg:mt-9 lg:text-4xl lg:leading-tight xl:w-2/5"
-          >
-            Built with technology you can trust
-          </div>
-          <p
-            class="text-sm font-medium text-slate-600 leading-normal lg:leading-normal lg:text-base mt-4 text-center sm:mx-auto sm:w-2/3 md:w-1/2 xl:w-2/5"
-          >
-            Witness the diverse range of trusted technlogies that have we have
-            choosen for your needs, forming a tapestry of success.
-          </p>
-        </div>
-        <div
-          class="mt-6 border-b border-b-neutral-100 sm:mx-auto sm:w-7/12 lg:mt-12"
-        ></div>
-        <div
-          class="mt-9 flex flex-wrap items-center justify-center gap-8 sm:gap-x-12 lg:mt-12 lg:gap-x-24"
-        >
-          <img
-            class="h-8 sm:h-12 lg:h-16"
-            src="https://cdn.worldvectorlogo.com/logos/gemini-icon-logo.svg"
-            alt="Logo"
-          />
-          <img
-            class="h-8 sm:h-12 lg:h-16"
-            src="https://cdn.worldvectorlogo.com/logos/chatgpt-6.svg"
-            alt="Logo"
-          />
-          <img
-            class="h-8 sm:h-12 lg:h-16"
-            src="https://cdn.worldvectorlogo.com/logos/claude-logo.svg"
-            alt="Logo"
-          />
-          <img
-            class="h-8 sm:h-12 lg:h-16"
-            src="https://cdn.worldvectorlogo.com/logos/python-5.svg"
-            alt="Logo"
-          />
-          <img
-            class="h-8 sm:h-12 lg:h-16"
-            src="https://cdn.worldvectorlogo.com/logos/flask.svg"
-            alt="Logo"
-          />
-          <img
-            class="h-8 sm:h-12 lg:h-16"
-            src="https://cdn.worldvectorlogo.com/logos/grok-1.svg"
-            alt="Logo"
-          />
-        </div>
-      </div>
-    </section>
-
-    <section class="pt-12 lg:pt-16 pb-12 lg:pb-16">
-      <div class="max-w-7xl mx-auto px-4 xl:px-0">
-        <div
-          class="relative overflow-hidden rounded-3xl lg:grid lg:grid-cols-2 lg:rounded-[3rem]"
-        >
-          <img
-            class="absolute left-0 top-0 -z-20 h-full transform scale-x-[-1] w-full object-cover"
-            src="https://tailkits.com/ui/iframe/assets/img/bg-5.png"
-            alt="Background image"
-          />
-          <div
-            class="flex flex-col items-start px-4 pb-80 pt-4 lg:px-16 lg:pb-16 lg:pt-40"
-          >
-            <div
-              class="text-3xl font-semibold text-white sm:w-4/5 lg:w-11/12 lg:text-5xl lg:leading-tight xl:w-3/4"
-            >
-              Experience Next Level Agentic PenTesting
-            </div>
-            <a
-              href="#"
-              title="Try free"
-              class="items-center justify-center whitespace-nowrap text-sm font-medium transition-all focus:shadow-[0_0px_0px_2px_rgba(15,23,42,0.25),0_2px_10px_0px_rgba(0,0,0,0.05)] shadow-[0_2px_10px_0px_rgba(0,0,0,0.05)] bg-slate-900 text-white hover:bg-slate-800 disabled:bg-slate-900/30 disabled:text-slate-50/70 px-4 py-2.5 rounded-[0.625rem] mt-6 flex"
-            >
-              Try free
-              <span class="ml-1 text-slate-400"> - 14 days</span>
-              <svg
-                class="shrink-0 ml-2 h-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-                data-slot="icon"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M12.97 3.97a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06l6.22-6.22H3a.75.75 0 0 1 0-1.5h16.19l-6.22-6.22a.75.75 0 0 1 0-1.06Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </a>
-          </div>
-          <figure class="lg:relative">
-            <img
-              class="absolute left-16 top-52 h-80 object-cover rounded-2xl object-left-top sm:left-44 sm:top-44 sm:h-[30rem] lg:left-24 lg:top-24 lg:h-[42rem]"
-                            src="{{ url_for('static', filename='pic2.png') }}"
-              alt="Mockup"
-            />
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <section class="pt-12 lg:pt-16 relative pb-12 lg:pb-16">
-      <div class="max-w-7xl bg-white mx-auto px-4 xl:px-0">
-        <div class="flex flex-col items-center">
-          <div
-            class="items-center justify-center rounded-full text-sm font-medium whitespace-nowrap shadow-[0_2px_10px_0px_rgba(0,0,0,0.15)] inline-flex bg-white text-neutral-700 px-2.5 py-1"
-          >
-            Statistics
-          </div>
-          <div
-            class="mt-6 bg-gradient-to-b from-slate-800 to-slate-600 bg-clip-text text-center text-3xl font-semibold text-transparent sm:w-2/3 md:w-1/2 lg:mt-9 lg:text-4xl lg:leading-tight xl:w-7/12"
-          >
-            Security Testing Made Easy
-          </div>
-          <p
-            class="text-sm font-medium text-slate-600 leading-normal lg:leading-normal lg:text-base mt-4 text-center sm:mx-auto sm:w-2/3 md:w-1/2 xl:w-2/5"
-          >
-            Everything you need for comprehensive penetration testing
-          </p>
-        </div>
-        <div
-          class="mt-12 grid items-center gap-y-8 text-center md:px-4 lg:grid-cols-3 lg:gap-x-12 lg:gap-y-0 lg:px-8"
-        >
-          <div
-            class="relative first:before:relative before:left-1/2 before:-translate-x-1/2 lg:before:translate-x-0 before:w-16 before:h-px before:absolute lg:before:-left-6 lg:before:top-1/2 lg:before:-translate-y-1/2 lg:before:w-px lg:before:h-16 before:bg-neutral-100 before:-top-4"
-          >
-            <div
-              class="bg-gradient-to-b from-slate-800 to-slate-600 bg-clip-text text-5xl font-semibold text-transparent lg:text-6xl xl:text-7xl"
-            >
-              100%
-            </div>
-            <p class="mt-1 px-2.5 text-sm font-medium text-neutral-500 lg:mt-3">
-              Agentic AI System
-            </p>
-          </div>
-          <div
-            class="relative first:before:relative before:left-1/2 before:-translate-x-1/2 lg:before:translate-x-0 before:w-16 before:h-px before:absolute lg:before:-left-6 lg:before:top-1/2 lg:before:-translate-y-1/2 lg:before:w-px lg:before:h-16 before:bg-neutral-100 before:-top-4"
-          >
-            <div
-              class="bg-gradient-to-b from-slate-800 to-slate-600 bg-clip-text text-5xl font-semibold text-transparent lg:text-6xl xl:text-7xl"
-            >
-              6X
-            </div>
-            <p class="mt-1 px-2.5 text-sm font-medium text-neutral-500 lg:mt-3">
-              Faster Severity Assessment
-            </p>
-          </div>
-          <div
-            class="relative first:before:relative before:left-1/2 before:-translate-x-1/2 lg:before:translate-x-0 before:w-16 before:h-px before:absolute lg:before:-left-6 lg:before:top-1/2 lg:before:-translate-y-1/2 lg:before:w-px lg:before:h-16 before:bg-neutral-100 before:-top-4"
-          >
-            <div
-              class="bg-gradient-to-b from-slate-800 to-slate-600 bg-clip-text text-5xl font-semibold text-transparent lg:text-6xl xl:text-7xl"
-            >
-              100%
-            </div>
-            <p class="mt-1 px-2.5 text-sm font-medium text-neutral-500 lg:mt-3">
-              Customer happiness
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="features" class="relative pt-12 lg:pt-16 pb-12 lg:pb-16">
-      <div class="max-w-7xl mx-auto px-4 xl:px-0 flex flex-col">
-        <div
-          class="flex flex-col items-start sm:items-center sm:text-center md:px-4 lg:items-start lg:px-8 lg:text-left"
-        >
-          <div
-            class="items-center justify-center rounded-full text-sm font-medium whitespace-nowrap shadow-[0_2px_10px_0px_rgba(0,0,0,0.15)] inline-flex bg-white text-neutral-700 px-2.5 py-1"
-          >
-            Features
-          </div>
-          <div
-            class="bg-gradient-to-b from-slate-800 to-slate-600 bg-clip-text text-3xl font-semibold text-transparent lg:text-5xl mt-6 lg:mt-8 lg:w-5/6 lg:leading-tight xl:w-3/4"
-          >
-            Take your PenTesting to the next level
-          </div>
-          <p class="mt-4 text-sm font-medium text-slate-600 sm:w-1/2 lg:w-2/5">
-            Our platform streamlines the entire vulnerability assessment
-            process, from initial discovery to final reporting.
-          </p>
-        </div>
-        <div class="mt-6 border-b border-b-neutral-100"></div>
-        <div
-          class="mt-6 flex flex-col gap-y-6 sm:px-4 lg:mt-9 lg:flex-row lg:gap-x-9 lg:gap-y-0 lg:px-8"
-        >
-          <div
-            class="flex flex-col gap-y-4 sm:mx-auto sm:w-7/12 md:w-1/2 lg:mx-0 lg:mb-20 lg:w-2/5 lg:gap-y-6 xl:w-1/3"
-          >
-            <article
-              id="feature-advanced"
-              class="feature-item flex flex-col items-start bg-white cursor-pointer transition-all duration-300 p-4 rounded-lg"
-              data-feature="advanced"
-            >
-              <figure class="flex items-center gap-2">
-                <svg
-                  class="h-6 text-slate-400 lg:h-8"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-2.625 6c-.54 0-.828.419-.936.634a1.96 1.96 0 0 0-.189.866c0 .298.059.605.189.866.108.215.395.634.936.634.54 0 .828-.419.936-.634.13-.26.189-.568.189-.866 0-.298-.059-.605-.189-.866-.108-.215-.395-.634-.936-.634Zm4.314.634c.108-.215.395-.634.936-.634.54 0 .828.419.936.634.13.26.189.568.189.866 0 .298-.059.605-.189.866-.108.215-.395.634-.936.634-.54 0-.828-.419-.936-.634a1.96 1.96 0 0 1-.189-.866c0-.298.059-.605.189-.866Zm2.023 6.828a.75.75 0 1 0-1.06-1.06 3.75 3.75 0 0 1-5.304 0 .75.75 0 0 0-1.06 1.06 5.25 5.25 0 0 0 7.424 0Z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </figure>
-              <div
-                class="mt-3 font-bold text-neutral-700 md:text-lg lg:mt-4 xl:text-xl"
-              >
-                Advanced Analysis
-              </div>
-              <p
-                class="feature-description mt-2 text-sm font-medium text-neutral-500"
-              >
-                Automated vulnerability research and analysis through complex
-                Agentic AI System
-              </p>
-            </article>
-            <article
-              id="feature-scoring"
-              class="feature-item flex flex-col items-start bg-white opacity-50 cursor-pointer transition-all duration-300 p-4 rounded-lg"
-              data-feature="scoring"
-            >
-              <figure>
-                <svg
-                  class="h-6 text-slate-400 lg:h-8"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-2.625 6c-.54 0-.828.419-.936.634a1.96 1.96 0 0 0-.189.866c0 .298.059.605.189.866.108.215.395.634.936.634.54 0 .828-.419.936-.634.13-.26.189-.568.189-.866 0-.298-.059-.605-.189-.866-.108-.215-.395-.634-.936-.634Zm4.314.634c.108-.215.395-.634.936-.634.54 0 .828.419.936.634.13.26.189.568.189.866 0 .298-.059.605-.189.866-.108.215-.395.634-.936.634-.54 0-.828-.419-.936-.634a1.96 1.96 0 0 1-.189-.866c0-.298.059-.605.189-.866Zm2.023 6.828a.75.75 0 1 0-1.06-1.06 3.75 3.75 0 0 1-5.304 0 .75.75 0 0 0-1.06 1.06 5.25 5.25 0 0 0 7.424 0Z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </figure>
-              <div
-                class="mt-3 font-bold text-neutral-700 md:text-lg lg:mt-4 xl:text-xl"
-              >
-                Seamless Scoring
-              </div>
-              <p
-                class="feature-description hidden mt-2 text-sm font-medium text-neutral-500"
-              >
-                Say goodbye to silos and hello to AI-powered severity assessment
-                and CVSS scoring
-              </p>
-            </article>
-            <article
-              id="feature-interface"
-              class="feature-item flex flex-col items-start bg-white opacity-50 cursor-pointer transition-all duration-300 p-4 rounded-lg"
-              data-feature="interface"
-            >
-              <figure>
-                <svg
-                  class="h-6 text-slate-400 lg:h-8"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-2.625 6c-.54 0-.828.419-.936.634a1.96 1.96 0 0 0-.189.866c0 .298.059.605.189.866.108.215.395.634.936.634.54 0 .828-.419.936-.634.13-.26.189-.568.189-.866 0-.298-.059-.605-.189-.866-.108-.215-.395-.634-.936-.634Zm4.314.634c.108-.215.395-.634.936-.634.54 0 .828.419.936.634.13.26.189.568.189.866 0 .298-.059.605-.189.866-.108.215-.395.634.936.634-.54 0-.828-.419-.936-.634a1.96 1.96 0 0 1-.189-.866c0-.298.059-.605.189-.866Zm2.023 6.828a.75.75 0 1 0-1.06-1.06 3.75 3.75 0 0 1-5.304 0 .75.75 0 0 0-1.06 1.06 5.25 5.25 0 0 0 7.424 0Z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </figure>
-              <div
-                class="mt-3 font-bold text-neutral-700 md:text-lg lg:mt-4 xl:text-xl"
-              >
-                Intuitive User Interface
-              </div>
-              <p
-                class="feature-description hidden mt-2 text-sm font-medium text-neutral-500"
-              >
-                Designed with you in mind, interface offers a seamless and
-                user-friendly pentesting platform.
-              </p>
-            </article>
-          </div>
-          <div class="flex grow">
-            <figure
-              class="relative h-52 w-full overflow-hidden rounded-xl bg-slate-200 sm:mx-auto sm:w-2/3 md:h-60 md:rounded-2xl lg:h-full lg:w-full lg:rounded-3xl"
-            >
-              <img
-                class="absolute left-8 top-6 h-80 rounded-md border-4 border-slate-900/5 object-cover object-left-top shadow-[0_2px_10px_0px_rgba(0,0,0,0.15)] sm:left-12 sm:top-12 lg:left-16 lg:top-24 lg:h-[35rem] lg:w-full lg:rounded-2xl"
-                            src="{{ url_for('static', filename='pic3.png') }}"
-                alt="Browser Mockup"
-              />
-            </figure>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="testamonials" class="pt-12 lg:pt-16 pb-12 lg:pb-16">
-      <div class="max-w-7xl mx-auto px-4 xl:px-0">
-        <div
-          class="relative overflow-hidden rounded-3xl lg:grid lg:grid-cols-[70%_30%] lg:rounded-[3rem]"
-        >
-          <img
-            class="absolute left-0 top-0 -z-20 h-full w-full object-cover"
-            src="https://tailkits.com/ui/iframe/assets/img/bg-5.png"
-            alt="Background image"
-          />
-          <div class="px-4 xl:px-0">
-            <figure
-              class="relative flex flex-col gap-y-6 sm:mx-auto w-full p-4 md:p-16"
-            >
-              <blockquote class="flex flex-col items-start">
-                <p
-                  id="testimonial-text"
-                  class="text-xl font-medium text-neutral-700 md:text-2xl xl:text-3xl transition-opacity duration-300"
-                >
-                  "Working with Cyber Sage was a pleasure from start to finish.
-                  Their application was very thorough, collaborative, and
-                  delivered exceptional results that perfectly aligned with our
-                  needs."
-                </p>
-                <div class="mt-6 flex flex-wrap gap-4 xl:mt-9">
-                  <figcaption
-                    id="testimonial-name"
-                    class="font-medium text-slate-700 transition-opacity duration-300"
+          <!-- Hero Section -->
+          <section class="flex items-center justify-center  h-screen ">
+            <div class="mx-auto  max-w-6xl px-4 sm:px-6">
+              <!-- Hero content -->
+              <div class="py-12 md:py-20">
+                <!-- Section header -->
+                <div class="pb-12 text-center md:pb-20">
+                  <h1
+                    class="text-white pb-5 font-nacelle text-5xl font-semibold"
+                    data-aos="fade-up"
                   >
-                    Sam Altman
-                  </figcaption>
-                  <div
-                    id="testimonial-role"
-                    class="items-center justify-center rounded-full text-sm font-medium whitespace-nowrap shadow-[0_2px_10px_0px_rgba(0,0,0,0.15)] inline-flex bg-slate-300 text-slate-700 px-2 py-0.5 transition-opacity duration-300"
-                  >
-                    Head of Cyber Security
+                    Orange Sage PenTesting Renaissance
+                  </h1>
+                  <div class="mx-auto max-w-3xl">
+                    <p
+                      class="mb-8 text-xl text-orange-200/65"
+                      data-aos="fade-up"
+                      data-aos-delay="200"
+                    >
+                      Where Agentic System Meets Cyber Security
+                    </p>
                   </div>
                 </div>
-                <img
-                  id="testimonial-logo"
-                  class="mt-6 h-8 xl:mt-9 transition-opacity duration-300"
-                  src="https://cdn.worldvectorlogo.com/logos/crowdstrike-logo.svg"
-                  alt="Logo"
-                />
-                <div
-                  class="mt-6 flex items-center justify-center gap-x-3 md:mt-9 md:gap-x-6"
-                >
-                  <button
-                    id="testimonial-prev"
-                    type="button"
-                    aria-label="Previous testimonial"
-                    class="rounded-full cursor-pointer flex items-center justify-center whitespace-nowrap transition-all focus:shadow-[0_0px_0px_2px_rgba(15,23,42,0.25),0_2px_10px_0px_rgba(0,0,0,0.05)] shadow-[0_2px_10px_0px_rgba(0,0,0,0.05)] bg-slate-900 text-white hover:bg-slate-800 disabled:bg-slate-900/30 disabled:text-slate-50/70 w-8 h-8 p-1.5 md:w-10 md:h-10 md:p-2.5 xl:w-11 xl:h-11 xl:p-3"
+
+                <!-- Video Modal -->
+                <div class="relative">
+                  <!-- Secondary illustration -->
+                  <div
+                    class="pointer-events-none absolute bottom-8 left-1/2 -z-10 -ml-28 -translate-x-1/2 translate-y-1/2"
+                    aria-hidden="true"
                   >
-                    <svg
-                      class="h-5 shrink-0"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      aria-hidden="true"
-                      data-slot="icon"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </button>
+                    <img
+                      class="md:max-w-none"
+                      src="{{ url_for('static', filename='images/secondary-illustration.svg') }}"
+                      width="1165"
+                      height="1012"
+                      alt="Secondary illustration"
+                    />
+                  </div>
+
+                  <!-- Video thumbnail -->
                   <button
-                    id="testimonial-next"
-                    type="button"
-                    aria-label="Next testimonial"
-                    class="rounded-full cursor-pointer flex items-center justify-center whitespace-nowrap transition-all focus:shadow-[0_0px_0px_2px_rgba(15,23,42,0.25),0_2px_10px_0px_rgba(0,0,0,0.05)] shadow-[0_2px_10px_0px_rgba(0,0,0,0.05)] bg-slate-900 text-white hover:bg-slate-800 disabled:bg-slate-900/30 disabled:text-slate-50/70 w-8 h-8 p-1.5 md:w-10 md:h-10 md:p-2.5 xl:w-11 xl:h-11 xl:p-3"
+                    class="group relative flex items-center justify-center rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-200"
+                    onclick="openVideoModal()"
+                    aria-label="Watch the video"
+                    data-aos="fade-up"
+                    data-aos-delay="200"
                   >
-                    <svg
-                      class="h-5 shrink-0"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      aria-hidden="true"
-                      data-slot="icon"
+                    <figure
+                      class="relative overflow-hidden rounded-2xl before:absolute before:inset-0 before:-z-10 before:bg-gradient-to-br before:from-gray-900 before:via-orange-500/20 before:to-gray-900"
                     >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                        clip-rule="evenodd"
+                      <img
+                        class="opacity-50 grayscale"
+                        src="{{ url_for('static', filename='pic2.png') }}"
+                        width="1104"
+                        height="576"
+                        alt="Modal video thumbnail"
                       />
-                    </svg>
+                    </figure>
+                    <!-- Play icon -->
+                    <span
+                      class="pointer-events-none absolute p-2.5 before:absolute before:inset-0 before:rounded-full before:bg-gray-950 before:duration-300 group-hover:before:scale-110"
+                    >
+                      <span class="relative flex items-center gap-3">
+                        <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="20"
+  height="20"
+  fill="none"
+>
+  <path
+    fill="url(#pla)"
+    fill-rule="evenodd"
+    d="M10 20c5.523 0 10-4.477 10-10S15.523 0 10 0 0 4.477 0 10s4.477 10 10 10Zm3.5-10-5-3.5v7l5-3.5Z"
+    clip-rule="evenodd"
+  />
+  <defs>
+    <linearGradient
+      id="pla"
+      x1="10"
+      x2="10"
+      y1="0"
+      y2="20"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="#FF964F" />
+      <stop offset="1" stop-color="#FF964F" stop-opacity=".72" />
+    </linearGradient>
+  </defs>
+</svg>
+
+                        <span
+                          class="text-sm font-medium leading-tight text-gray-300"
+                        >
+                          Watch Demo
+                          <span class="text-gray-600"> - </span>
+                          3:47
+                        </span>
+                      </span>
+                    </span>
                   </button>
                 </div>
-              </blockquote>
+              </div>
+            </div>
+          </section>
+        </div>
+        <section class="pt-12  lg:pt-16 pb-8 md:pb-12 lg:pb-16">
+          <div class="max-w-7xl mx-auto px-4 xl:px-0">
+            <div class="flex flex-col items-center">
+              <div
+                class="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-gradient-to-r before:from-transparent before:to-orange-200/50 after:h-px after:w-8 after:bg-gradient-to-l after:from-transparent after:to-orange-200/50"
+              >
+                <span
+                  class="inline-flex bg-gradient-to-r from-orange-500 to-orange-200 bg-clip-text text-transparent"
+                >
+                  Tech Stack
+                </span>
+              </div>
+              <div
+                class="text-white text-center text-3xl font-semibold sm:mx-auto sm:w-2/3 md:w-1/2 lg:mt-9 lg:text-4xl lg:leading-tight xl:w-2/5"
+              >
+                Built with technology you can trust
+              </div>
+              <p
+                class="text-sm font-medium text-slate-600 leading-normal lg:leading-normal lg:text-base mt-4 text-center sm:mx-auto sm:w-2/3 md:w-1/2 xl:w-2/5"
+              >
+                Witness the diverse range of trusted technlogies that have we
+                have choosen for your needs.
+              </p>
+            </div>
+            <div
+              class="border-t mt-9 [border-image:linear-gradient(to_right,transparent,rgb(148_163_184/0.25),transparent)1]"
+            ></div>
+            <div
+              class="mt-9 flex flex-wrap items-center justify-center gap-8 sm:gap-x-12 lg:mt-12 lg:gap-x-24"
+            >
               <img
-                class="absolute -top-5 left-0 h-12 xl:-top-16 xl:h-8"
-                src="https://tailkits.com/ui/iframe/assets/img/quote.svg"
-                alt="Quote"
+                class="h-8 bg-white rounded-full p-2 sm:h-12 lg:h-16"
+                src="https://cdn.worldvectorlogo.com/logos/gemini-icon-logo.svg"
+                alt="Logo"
               />
-            </figure>
+              <img
+                class="h-8 bg-white rounded-full p-2 sm:h-12 lg:h-16"
+                src="https://cdn.worldvectorlogo.com/logos/chatgpt-6.svg"
+                alt="Logo"
+              />
+              <img
+                class="h-8 bg-white rounded-full p-2 sm:h-12 lg:h-16"
+                src="https://cdn.worldvectorlogo.com/logos/claude-logo.svg"
+                alt="Logo"
+              />
+              <img
+                class="h-8 bg-white rounded-full p-2 sm:h-12 lg:h-16"
+                src="https://cdn.worldvectorlogo.com/logos/python-5.svg"
+                alt="Logo"
+              />
+              <img
+                class="h-8 bg-white rounded-full p-2 sm:h-12 w-8 sm:w-12 lg:w-16 px-auto lg:h-16"
+                src="https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg"
+                alt="Logo"
+              />
+              <img
+                class="h-8 bg-white rounded-full p-2 sm:h-12 lg:h-16"
+                src="https://cdn.worldvectorlogo.com/logos/grok-1.svg"
+                alt="Logo"
+              />
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <section id="faq" class="pt-12 lg:pt-16 pb-6 lg:pb-16">
-      <div class="max-w-7xl mx-auto px-4 xl:px-0">
-        <div class="flex flex-col items-start md:px-4 lg:items-start lg:px-8">
-          <div
-            class="items-center justify-center rounded-full text-sm font-medium whitespace-nowrap shadow-[0_2px_10px_0px_rgba(0,0,0,0.15)] inline-flex bg-white text-neutral-700 px-2.5 py-1"
-          >
-            Frequently Asked Questions
-          </div>
-          <div
-            class="mt-8 bg-gradient-to-b from-slate-800 to-slate-600 bg-clip-text text-3xl font-semibold text-transparent sm:w-2/3 md:w-1/2 lg:mt-9 lg:text-4xl lg:leading-tight xl:w-2/3"
-          >
-            Your Questions, Answered
-          </div>
-          <p
-            class="text-sm font-medium text-slate-600 leading-normal lg:leading-normal lg:text-base mt-4 sm:w-2/3 md:w-1/2 xl:w-2/5"
-          >
-            Find answers to common questions about Cyber Sage and how it can
-            revolutionize your penetration testing workflow.
-          </p>
-        </div>
-        <div class="mt-4 border-b border-b-neutral-100 lg:mt-6"></div>
-        <div class="mt-6 space-y-0.5 md:px-4 lg:mt-9 lg:px-8">
-          <details
-            class="group open:bg-slate-50 divide-y divide-neutral-100 focus:shadow-[0_0px_2px_0px_rgba(0,0,0,0.10)] open:mt-3 open:rounded-2xl hover:rounded-2xl"
-          >
-            <summary
-              class="group/question flex cursor-pointer hover:opacity-90 transition-all items-center justify-between gap-x-4 rounded-t-2xl p-4"
-            >
-              <div class="font-semibold text-neutral-700 md:text-lg xl:text-xl">
-                What is Cyber Sage?
-              </div>
-              <figure
-                class="hidden shrink-0 items-center gap-x-3 whitespace-nowrap rounded-full bg-slate-200 py-1.5 pl-3 pr-1.5 text-sm text-slate-600 transition-all group-open:flex"
-              >
-                Collapse
-                <svg
-                  class="h-5 text-slate-600"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M4.25 12a.75.75 0 0 1 .75-.75h14a.75.75 0 0 1 0 1.5H5a.75.75 0 0 1-.75-.75Z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </figure>
-              <figure
-                class="flex shrink-0 items-center justify-center transition-all rounded-full bg-slate-200 p-1.5 shadow-[0_2px_10px_0px_rgba(0,0,0,0.05)] group-open:hidden"
-              >
-                <svg
-                  class="h-5 text-slate-600"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </figure>
-            </summary>
-            <p class="text-neutral-500 px-4 pb-4">
-              Cyber Sage is an AI-powered penetration testing platform that
-              helps cybersecurity professionals identify, assess, and report
-              security vulnerabilities with greater speed and precision. It
-              combines automated tools with an expert AI assistant to streamline
-              the entire testing process.
-            </p>
-          </details>
-          <details
-            class="group open:bg-slate-50 divide-y divide-neutral-100 focus:shadow-[0_0px_2px_0px_rgba(0,0,0,0.10)] open:mt-3 open:rounded-2xl hover:rounded-2xl"
-          >
-            <summary
-              class="group/question flex cursor-pointer hover:opacity-90 transition-all items-center justify-between gap-x-4 rounded-t-2xl p-4"
-            >
-              <div class="font-semibold text-neutral-700 md:text-lg xl:text-xl">
-                How does the AI work?
-              </div>
-              <figure
-                class="hidden shrink-0 items-center gap-x-3 whitespace-nowrap rounded-full bg-slate-200 py-1.5 pl-3 pr-1.5 text-sm text-slate-600 transition-all group-open:flex"
-              >
-                Collapse
-                <svg
-                  class="h-5 text-slate-600"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M4.25 12a.75.75 0 0 1 .75-.75h14a.75.75 0 0 1 0 1.5H5a.75.75 0 0 1-.75-.75Z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </figure>
-              <figure
-                class="flex shrink-0 items-center justify-center transition-all rounded-full bg-slate-200 p-1.5 shadow-[0_2px_10px_0px_rgba(0,0,0,0.05)] group-open:hidden"
-              >
-                <svg
-                  class="h-5 text-slate-600"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </figure>
-            </summary>
-            <p class="text-neutral-500 px-4 pb-4">
-              Cyber Sage uses a multi-agent AI system. When you describe a
-              potential vulnerability, our AI agents research it, assess its
-              severity using CVSS, provide technical details, and suggest
-              remediation strategies. The CyberSage assistant also provides
-              expert guidance throughout the testing process.
-            </p>
-          </details>
-          <details
-            class="group open:bg-slate-50 divide-y divide-neutral-100 focus:shadow-[0_0px_2px_0px_rgba(0,0,0,0.10)] open:mt-3 open:rounded-2xl hover:rounded-2xl"
-          >
-            <summary
-              class="group/question flex cursor-pointer hover:opacity-90 transition-all items-center justify-between gap-x-4 rounded-t-2xl p-4"
-            >
-              <div class="font-semibold text-neutral-700 md:text-lg xl:text-xl">
-                What kind of tests can I perform?
-              </div>
-              <figure
-                class="hidden shrink-0 items-center gap-x-3 whitespace-nowrap rounded-full bg-slate-200 py-1.5 pl-3 pr-1.5 text-sm text-slate-600 transition-all group-open:flex"
-              >
-                Collapse
-                <svg
-                  class="h-5 text-slate-600"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M4.25 12a.75.75 0 0 1 .75-.75h14a.75.75 0 0 1 0 1.5H5a.75.75 0 0 1-.75-.75Z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </figure>
-              <figure
-                class="flex shrink-0 items-center justify-center transition-all rounded-full bg-slate-200 p-1.5 shadow-[0_2px_10px_0px_rgba(0,0,0,0.05)] group-open:hidden"
-              >
-                <svg
-                  class="h-5 text-slate-600"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </figure>
-            </summary>
-            <p class="text-neutral-500 px-4 pb-4">
-              Cyber Sage supports a wide range of tests, including vulnerability
-              assessments, network security scanning (basic, comprehensive, and
-              stealth), automated penetration testing across multiple targets,
-              and advanced vulnerability scanning for web applications and
-              networks.
-            </p>
-          </details>
-          <details
-            class="group open:bg-slate-50 divide-y divide-neutral-100 focus:shadow-[0_0px_2px_0px_rgba(0,0,0,0.10)] open:mt-3 open:rounded-2xl hover:rounded-2xl"
-          >
-            <summary
-              class="group/question flex cursor-pointer hover:opacity-90 transition-all items-center justify-between gap-x-4 rounded-t-2xl p-4"
-            >
-              <div class="font-semibold text-neutral-700 md:text-lg xl:text-xl">
-                Is Cyber Sage suitable for both beginners and experts?
-              </div>
-              <figure
-                class="hidden shrink-0 items-center gap-x-3 whitespace-nowrap rounded-full bg-slate-200 py-1.5 pl-3 pr-1.5 text-sm text-slate-600 transition-all group-open:flex"
-              >
-                Collapse
-                <svg
-                  class="h-5 text-slate-600"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M4.25 12a.75.75 0 0 1 .75-.75h14a.75.75 0 0 1 0 1.5H5a.75.75 0 0 1-.75-.75Z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </figure>
-              <figure
-                class="flex shrink-0 items-center justify-center transition-all rounded-full bg-slate-200 p-1.5 shadow-[0_2px_10px_0px_rgba(0,0,0,0.05)] group-open:hidden"
-              >
-                <svg
-                  class="h-5 text-slate-600"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </figure>
-            </summary>
-            <p class="text-neutral-500 px-4 pb-4">
-              Yes! Cyber Sage is designed to be intuitive for beginners while
-              offering the depth and power that experienced penetration testers
-              require. The CyberSage assistant can guide newcomers, while the
-              advanced scanning options and detailed reports provide the
-              necessary tools for experts.
-            </p>
-          </details>
-        </div>
-      </div>
-    </section>
 
-    <footer class="py-16 lg:py-24">
-      <div class="max-w-7xl mx-auto px-4 xl:px-0 flex flex-col gap-y-12">
-        <div
-          class="grid gap-y-6 sm:grid-cols-2 sm:gap-x-8 md:px-4 lg:grid-cols-4 lg:gap-x-12 lg:gap-y-0 lg:px-8"
-        >
-          <figure>
+
+
+  <!-- Your Content Here -->
+
+
+
+        <!-- Workflows Section -->
+        <section class="py-20">
+          <div class="mx-auto max-w-6xl px-4 sm:px-6">
+            <div class="pb-12 md:pb-20">
+              <!-- Section header -->
+              <div class="mx-auto max-w-3xl pb-12 text-center md:pb-20">
+                <div
+                  class="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-gradient-to-r before:from-transparent before:to-orange-200/50 after:h-px after:w-8 after:bg-gradient-to-l after:from-transparent after:to-orange-200/50"
+                >
+                  <span
+                    class="inline-flex bg-gradient-to-r from-orange-500 to-orange-200 bg-clip-text text-transparent"
+                  >
+                    Features
+                  </span>
+                </div>
+                <h2
+                  class="pb-4 font-nacelle text-3xl font-semibold text-white md:text-4xl"
+                >
+                  Take your PenTesting to the next level
+                </h2>
+                <p class="text-lg text-orange-200/65">
+                  Our platform streamlines the entire vulnerability assessment
+                  process, from initial discovery to final reporting.
+                </p>
+              </div>
+              <!-- Spotlight items -->
+              <div
+                class="mx-auto grid max-w-sm items-start gap-6 lg:max-w-none lg:grid-cols-3"
+              >
+                <!-- Card 1 -->
+                <a class="spotlight-card group/card relative h-full" href="#0">
+                  <div
+                    class="relative z-20 h-full overflow-hidden rounded-[inherit] bg-gray-950 after:absolute after:inset-0 after:bg-gradient-to-br after:from-gray-900/50 after:via-gray-800/25 after:to-gray-900/50"
+                  >
+                    <!-- Arrow -->
+                    <div
+                      class="absolute right-6 top-6 flex h-8 w-8 items-center justify-center rounded-full border border-gray-700/50 bg-gray-800/65 text-gray-200 opacity-0 transition-opacity group-hover/card:opacity-100"
+                      aria-hidden="true"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="9"
+                        height="8"
+                        fill="none"
+                      >
+                        <path
+                          fill="#F4F4F5"
+                          d="m4.92 8-.787-.763 2.733-2.68H0V3.443h6.866L4.133.767 4.92 0 9 4 4.92 8Z"
+                        />
+                      </svg>
+                    </div>
+                    <!-- Image -->
+                    <img
+                      class="inline-flex"
+                      src="{{ url_for('static', filename='images/workflow-01.png') }}"
+                      width="350"
+                      height="288"
+                      alt="Workflow 01"
+                    />
+                    <!-- Content -->
+                    <div class="p-6">
+                      <div class="mb-3">
+                        <span
+                          class="btn-sm relative rounded-full bg-gray-800/40 px-2.5 py-0.5 text-xs font-normal before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:bg-gradient-to-b before:from-gray-700/15 before:to-gray-700/50 before:p-px before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)] hover:bg-gray-800/60"
+                        >
+                          <span class="text-white"> Built-in Tools </span>
+                        </span>
+                      </div>
+                      <p class="text-orange-200/65">
+                        Streamline the product development flow with a content
+                        platform that's aligned across specs and insights.
+                      </p>
+                    </div>
+                  </div>
+                </a>
+                <!-- Card 2 -->
+                <a class="spotlight-card group/card relative h-full" href="#0">
+                  <div
+                    class="relative z-20 h-full overflow-hidden rounded-[inherit] bg-gray-950 after:absolute after:inset-0 after:bg-gradient-to-br after:from-gray-900/50 after:via-gray-800/25 after:to-gray-900/50"
+                  >
+                    <!-- Arrow -->
+                    <div
+                      class="absolute right-6 top-6 flex h-8 w-8 items-center justify-center rounded-full border border-gray-700/50 bg-gray-800/65 text-gray-200 opacity-0 transition-opacity group-hover/card:opacity-100"
+                      aria-hidden="true"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="9"
+                        height="8"
+                        fill="none"
+                      >
+                        <path
+                          fill="#F4F4F5"
+                          d="m4.92 8-.787-.763 2.733-2.68H0V3.443h6.866L4.133.767 4.92 0 9 4 4.92 8Z"
+                        />
+                      </svg>
+                    </div>
+                    <!-- Image -->
+                    <img
+                      class="inline-flex"
+                      src="{{ url_for('static', filename='images/workflow-02.png') }}"
+                      width="350"
+                      height="288"
+                      alt="Workflow 02"
+                    />
+                    <!-- Content -->
+                    <div class="p-6">
+                      <div class="mb-3">
+                        <span
+                          class="btn-sm relative rounded-full bg-gray-800/40 px-2.5 py-0.5 text-xs font-normal before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:bg-gradient-to-b before:from-gray-700/15 before:to-gray-700/50 before:p-px before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)] hover:bg-gray-800/60"
+                        >
+                          <span class="text-white"> Scale Instantly </span>
+                        </span>
+                      </div>
+                      <p class="text-orange-200/65">
+                        Streamline the product development flow with a content
+                        platform that's aligned across specs and insights.
+                      </p>
+                    </div>
+                  </div>
+                </a>
+                <!-- Card 3 -->
+                <a class="spotlight-card group/card relative h-full" href="#0">
+                  <div
+                    class="relative z-20 h-full overflow-hidden rounded-[inherit] bg-gray-950 after:absolute after:inset-0 after:bg-gradient-to-br after:from-gray-900/50 after:via-gray-800/25 after:to-gray-900/50"
+                  >
+                    <!-- Arrow -->
+                    <div
+                      class="absolute right-6 top-6 flex h-8 w-8 items-center justify-center rounded-full border border-gray-700/50 bg-gray-800/65 text-gray-200 opacity-0 transition-opacity group-hover/card:opacity-100"
+                      aria-hidden="true"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="9"
+                        height="8"
+                        fill="none"
+                      >
+                        <path
+                          fill="#F4F4F5"
+                          d="m4.92 8-.787-.763 2.733-2.68H0V3.443h6.866L4.133.767 4.92 0 9 4 4.92 8Z"
+                        />
+                      </svg>
+                    </div>
+                    <!-- Image -->
+                    <img
+                      class="inline-flex"
+                      src="{{ url_for('static', filename='images/workflow-03.png') }}"
+                      width="350"
+                      height="288"
+                      alt="Workflow 03"
+                    />
+                    <!-- Content -->
+                    <div class="p-6">
+                      <div class="mb-3">
+                        <span
+                          class="btn-sm relative rounded-full bg-gray-800/40 px-2.5 py-0.5 text-xs font-normal before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:bg-gradient-to-b before:from-gray-700/15 before:to-gray-700/50 before:p-px hover:bg-gray-800/60"
+                        >
+                          <span class="text-white"> Tailored Flows </span>
+                        </span>
+                      </div>
+                      <p class="text-white/65">
+                        Streamline the product development flow with a content
+                        platform that's aligned across specs and insights.
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- Features Section -->
+        <!-- Features Section -->
+        <section class="relative">
+          <!-- Blurred shapes -->
+          <div
+            class="pointer-events-none absolute left-1/2 top-0 -z-10 -mt-20 -translate-x-1/2"
+            aria-hidden="true"
+          >
             <img
-              class="h-8"
-              src="{{ url_for('static', filename='icon.png') }}"
-              alt="Logo"
+              class="max-w-none"
+              src="{{ url_for('static', filename='images/blurred-shape-gray.svg') }}"
+              width="760"
+              height="668"
+              alt="Blurred shape"
             />
-          </figure>
-          <div class="flex flex-col items-start gap-y-4">
-            <div class="text-sm font-bold text-neutral-700">Product</div>
-            <div class="flex flex-col items-start gap-y-1.5">
-              <div class="flex flex-wrap items-center gap-1">
-                <a
-                  class="whitespace-nowrap text-sm font-medium text-neutral-500"
-                  href="#"
-                  title="Home"
-                  >Home</a
-                >
-                <div
-                  class="items-center justify-center rounded-full text-sm font-medium whitespace-nowrap shadow-[0_2px_10px_0px_rgba(0,0,0,0.15)] inline-flex bg-slate-300 text-slate-700 px-2 py-0.5"
-                >
-                  we&#039;re hiring
-                </div>
-              </div>
-              <a
-                class="whitespace-nowrap text-sm font-medium text-neutral-500"
-                href="#"
-                title="Features"
-                >Features</a
-              >
-              <a
-                class="whitespace-nowrap text-sm font-medium text-neutral-500"
-                href="#"
-                title="Blog"
-                >Blog</a
-              >
-              <a
-                class="whitespace-nowrap text-sm font-medium text-neutral-500"
-                href="#"
-                title="Services"
-                >Services</a
-              >
-            </div>
           </div>
-          <div class="flex flex-col items-start gap-y-4">
-            <div class="text-sm font-bold text-neutral-700">Offers</div>
-            <div class="flex flex-col items-start gap-y-1.5">
-              <a
-                class="whitespace-nowrap text-sm font-medium text-neutral-500"
-                href="#"
-                title="Overview"
-                >Overview</a
-              >
-              <a
-                class="whitespace-nowrap text-sm font-medium text-neutral-500"
-                href="#"
-                title="Financial modeling"
-                >Financial modeling</a
-              >
-              <div class="flex flex-wrap items-center gap-1">
-                <a
-                  class="whitespace-nowrap text-sm font-medium text-neutral-500"
-                  href="#"
-                  title="Expense tracking"
-                  >Expense tracking</a
-                >
-                <div
-                  class="items-center justify-center rounded-full text-sm font-medium whitespace-nowrap shadow-[0_2px_10px_0px_rgba(0,0,0,0.15)] inline-flex bg-slate-300 text-slate-700 px-2 py-0.5"
-                >
-                  soon
-                </div>
-              </div>
-            </div>
+          <div
+            class="pointer-events-none absolute bottom-0 left-1/2 -z-10 -mb-80 -translate-x-[120%] opacity-50"
+            aria-hidden="true"
+          >
+            <img
+              class="max-w-none"
+              src="{{ url_for('static', filename='images/blurred-shape.svg') }}"
+              width="760"
+              height="668"
+              alt="Blurred shape"
+            />
           </div>
-          <div class="flex flex-col items-start gap-y-4">
-            <div class="text-sm font-bold text-neutral-700">Services</div>
-            <div class="flex flex-col items-start gap-y-1.5">
-              <a
-                class="whitespace-nowrap text-sm font-medium text-neutral-500"
-                href="#"
-                title="Design process"
-                >Design process</a
-              >
-              <a
-                class="whitespace-nowrap text-sm font-medium text-neutral-500"
-                href="#"
-                title="Business process"
-                >Business process</a
-              >
-              <div class="flex flex-wrap items-center gap-1">
-                <a
-                  class="whitespace-nowrap text-sm font-medium text-neutral-500"
-                  href="#"
-                  title="Home"
-                  >Rewards</a
-                >
-                <div
-                  class="items-center justify-center rounded-full text-sm font-medium whitespace-nowrap shadow-[0_2px_10px_0px_rgba(0,0,0,0.15)] inline-flex bg-slate-300 text-slate-700 px-2 py-0.5"
-                >
-                  beta
-                </div>
-              </div>
-              <a
-                class="whitespace-nowrap text-sm font-medium text-neutral-500"
-                href="#"
-                title="PRicing"
-                >Pricing</a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="border-b border-b-neutral-200"></div>
-        <div
-          class="flex flex-wrap items-center justify-between gap-4 md:px-4 lg:px-8"
-        >
-          <div class="flex flex-wrap items-center gap-3 lg:gap-4">
-            <div class="text-sm font-medium text-neutral-700">
-              <time>2025</time>
-              - Cyber Sage. All rights reserved.
-            </div>
-          </div>
-          <div class="flex flex-wrap items-center gap-4">
-            <a href="#" title="Instagram" target="_blank">
-              <svg
-                class="h-5 text-slate-700"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M13.7697 13.7693C14.1189 13.4202 14.3912 13.0019 14.5694 12.5413C14.7408 12.1003 14.858 11.5963 14.8917 10.8583C14.9254 10.1188 14.9334 9.88272 14.9334 7.99975C14.9334 6.11679 14.9254 5.88057 14.8917 5.14116C14.858 4.40316 14.7408 3.89919 14.5694 3.45817C14.3953 2.99555 14.1224 2.57645 13.7697 2.23014C13.4233 1.87737 13.0043 1.6044 12.5416 1.43028C12.1006 1.259 11.5966 1.14182 10.8585 1.10826C10.1192 1.07438 9.88305 1.06641 8.00005 1.06641C6.11706 1.06641 5.88087 1.07438 5.14147 1.10813C4.40346 1.14182 3.89948 1.259 3.45847 1.43041C2.99585 1.60451 2.57676 1.87741 2.23044 2.23012C1.87766 2.57641 1.60468 2.99549 1.43052 3.45814C1.25925 3.89918 1.14206 4.40316 1.10851 5.14116C1.07463 5.88057 1.06665 6.11676 1.06665 7.99975C1.06665 9.88275 1.07463 10.1189 1.10851 10.8583C1.1422 11.5963 1.25939 12.1003 1.43079 12.5413C1.60489 13.004 1.8778 13.423 2.2305 13.7693C2.57682 14.1221 2.9959 14.3949 3.45852 14.569C3.89957 14.7404 4.40355 14.8577 5.14152 14.8914C5.88103 14.9251 6.11714 14.9331 8.00011 14.9331C9.88308 14.9331 10.1193 14.9251 10.8587 14.8914C11.5967 14.8577 12.1007 14.7404 12.5416 14.569C13.0022 14.3909 13.4206 14.1186 13.7697 13.7693ZM2.13277 7.1837C2.13304 7.408 2.13337 7.67487 2.13337 7.99976C2.13337 8.32466 2.13304 8.59153 2.13277 8.81581C2.13171 9.69143 2.13144 9.9182 2.15426 10.4163C2.18265 11.0407 2.21676 11.4996 2.32092 11.8454C2.42106 12.1779 2.53337 12.5162 2.90004 12.9246C3.2667 13.333 3.62037 13.5179 4.07086 13.6538C4.52136 13.7896 5.08756 13.8188 5.57921 13.8412C6.13686 13.8667 6.35787 13.8666 7.5276 13.8663H8.00005C8.31256 13.8663 8.57139 13.8665 8.79028 13.8668C9.6874 13.8678 9.91385 13.868 10.4168 13.845C11.0413 13.8166 11.5001 13.7825 11.846 13.6784C12.1784 13.5782 12.5168 13.4659 12.9251 13.0992C13.3334 12.7325 13.5184 12.3788 13.6543 11.9284C13.7902 11.4778 13.8194 10.9116 13.8418 10.42C13.8672 9.86309 13.8671 9.64269 13.8669 8.47706V8.47695L13.8668 8.00016V7.52771C13.8671 6.35798 13.8672 6.13697 13.8417 5.57931C13.8193 5.08767 13.7901 4.52147 13.6543 4.07097C13.5184 3.62049 13.3334 3.26681 12.9251 2.90015C12.5168 2.53348 12.1783 2.42117 11.846 2.32103C11.5 2.21687 11.0412 2.18276 10.4167 2.15436C9.91381 2.13132 9.68739 2.13157 8.7903 2.13255C8.5714 2.1328 8.31257 2.13308 8.00005 2.13308L7.52749 2.133C6.35786 2.13269 6.13685 2.13263 5.57921 2.15807C5.08756 2.1805 4.52136 2.20969 4.07086 2.34556C3.62037 2.48144 3.2667 2.6664 2.90004 3.07474C2.53337 3.48307 2.42106 3.82146 2.32092 4.15391C2.21676 4.49973 2.18265 4.95861 2.15426 5.58307C2.13144 6.08114 2.13171 6.30802 2.13277 7.1837ZM7.99994 5.5999C6.67455 5.5999 5.60011 6.67434 5.60011 7.99973C5.60011 9.32512 6.67455 10.3996 7.99994 10.3996C9.32533 10.3996 10.3998 9.32512 10.3998 7.99973C10.3998 6.67434 9.32533 5.5999 7.99994 5.5999ZM4.53345 7.99973C4.53345 6.08523 6.08545 4.53323 7.99994 4.53323C9.91444 4.53323 11.4664 6.08523 11.4664 7.99973C11.4664 9.91423 9.91444 11.4662 7.99994 11.4662C6.08545 11.4662 4.53345 9.91423 4.53345 7.99973ZM11.701 5.09873C12.1428 5.09873 12.501 4.74056 12.501 4.29873C12.501 3.8569 12.1428 3.49873 11.701 3.49873C11.2592 3.49873 10.901 3.8569 10.901 4.29873C10.901 4.74056 11.2592 5.09873 11.701 5.09873Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </a>
-            <a href="#" title="Linkedin" target="_blank">
-              <svg
-                class="h-5 text-slate-700"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M2.13332 1.06641C1.54422 1.06641 1.06665 1.54397 1.06665 2.13307V13.8664C1.06665 14.4555 1.54422 14.9331 2.13332 14.9331H13.8667C14.4558 14.9331 14.9333 14.4555 14.9333 13.8664V2.13307C14.9333 1.54397 14.4558 1.06641 13.8667 1.06641H2.13332ZM3.25332 6.39974H5.27998V12.7997H3.25332V6.39974ZM5.41332 4.27174C5.41332 4.90503 4.89994 5.41841 4.26665 5.41841C3.63337 5.41841 3.11998 4.90503 3.11998 4.27174C3.11998 3.63845 3.63337 3.12507 4.26665 3.12507C4.89994 3.12507 5.41332 3.63845 5.41332 4.27174ZM12.8 8.91401C12.8 6.98863 11.5556 6.24009 10.3194 6.24009C9.91467 6.22015 9.51167 6.30501 9.15064 6.48621C8.87649 6.62381 8.58948 6.93865 8.36816 7.48617H8.31123V6.40021H6.39998V12.8048H8.43322V9.39835C8.40382 9.04948 8.51547 8.59859 8.74389 8.33027C8.97231 8.06195 9.29907 7.99787 9.54681 7.96533H9.62407C10.2706 7.96533 10.7505 8.36562 10.7505 9.37433V12.8048H12.7837L12.8 8.91401Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </a>
-            <a href="#" title="X" target="_blank">
-              <svg
-                class="h-5 text-slate-700"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M7.71553 5.00909C7.71553 3.16647 9.20886 1.67285 11.0506 1.67285C12.1318 1.67285 12.9952 2.18429 13.5737 2.92648C14.195 2.79936 14.7794 2.56945 15.308 2.2558C15.0996 2.90742 14.6585 3.45528 14.0835 3.80198C14.084 3.8031 14.0844 3.80423 14.085 3.80535C14.6489 3.73689 15.1854 3.58693 15.6851 3.36553L15.6839 3.36734C15.3244 3.90566 14.8726 4.38089 14.3531 4.76807C14.3811 4.95621 14.3953 5.1456 14.3953 5.33389C14.3953 9.26595 11.3997 13.8393 5.88925 13.8393C4.20162 13.8393 2.62975 13.3448 1.30667 12.4959C1.05876 12.3369 0.986733 12.007 1.1458 11.7591C1.15984 11.7371 1.17524 11.7166 1.19178 11.6974C1.28616 11.5413 1.46596 11.446 1.65904 11.4687C2.63532 11.5838 3.61134 11.4648 4.47162 11.089C3.61836 10.7127 2.95599 9.98344 2.66879 9.08743C2.61711 8.92622 2.65419 8.74969 2.76636 8.62288C2.77025 8.61848 2.77421 8.61417 2.77823 8.60995C2.09479 8.00845 1.66366 7.12726 1.66366 6.14524V6.10914C1.66366 5.93906 1.75367 5.78167 1.90027 5.69543C1.94844 5.66709 2.00035 5.64783 2.05363 5.63766C1.81914 5.18535 1.68652 4.67154 1.68652 4.12726C1.68652 3.62814 1.68938 2.99909 2.04083 2.43257C2.11961 2.30558 2.24804 2.22814 2.38544 2.20979C2.58756 2.14624 2.81688 2.20738 2.95895 2.3816C4.123 3.80905 5.80332 4.79526 7.71586 5.05529L7.71553 5.00909ZM5.88925 12.7726C5.04941 12.7726 4.24295 12.6328 3.4906 12.3755C4.40541 12.2171 5.28323 11.8567 6.03961 11.2639C6.19953 11.1386 6.26323 10.9261 6.19863 10.7335C6.13403 10.5409 5.95515 10.4098 5.752 10.4062C5.00228 10.3929 4.33821 10.0233 3.92308 9.45939C4.12612 9.44297 4.32452 9.40813 4.5167 9.35616C4.73172 9.29801 4.87849 9.09959 4.87114 8.87697C4.86379 8.65434 4.70426 8.46604 4.48587 8.42218C3.65535 8.25547 2.98537 7.64519 2.73242 6.84957C2.94667 6.90131 3.16904 6.93208 3.39709 6.93955C3.61129 6.94656 3.80417 6.81073 3.86976 6.6067C3.93534 6.40266 3.85772 6.17988 3.67956 6.06077C3.0562 5.64403 2.64652 4.93266 2.64652 4.12726C2.64652 3.94865 2.64904 3.78924 2.65974 3.64471C4.10784 5.11878 6.08926 6.06831 8.29422 6.17932C8.46102 6.18772 8.62212 6.1175 8.7295 5.98961C8.83689 5.8617 8.87816 5.69089 8.84103 5.52807C8.80267 5.35989 8.7822 5.18674 8.7822 5.00909C8.7822 3.75528 9.79825 2.73952 11.0506 2.73952C12.3672 2.73952 13.3286 3.95926 13.3286 5.33389C13.3286 8.80727 10.6882 12.7726 5.88925 12.7726Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </a>
-            <a href="#" title="Smiling Face" target="_blank">
-              <svg
-                class="h-5 text-slate-700"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clip-path="url(#clip0_1502_25447)">
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M7.99991 0.935547C4.09837 0.935547 0.935547 4.09837 0.935547 7.9999C0.935547 11.9014 4.09837 15.0643 7.99991 15.0643C11.9014 15.0643 15.0642 11.9014 15.0642 7.9999C15.0642 4.09837 11.9014 0.935547 7.99991 0.935547ZM1.94889 7.9999C1.94889 4.65802 4.65802 1.94888 7.99991 1.94888C11.3418 1.94888 14.0509 4.65802 14.0509 7.9999C14.0509 11.3417 11.3418 14.051 7.99991 14.051C4.65802 14.051 1.94889 11.3417 1.94889 7.9999ZM5.3733 9.82841C5.20479 9.58682 4.87234 9.52759 4.63075 9.6961C4.38916 9.86461 4.32993 10.1971 4.49844 10.4386C5.26854 11.5427 6.54969 12.2669 8.00004 12.2669C9.45039 12.2669 10.7315 11.5427 11.5017 10.4386C11.6702 10.1971 11.6109 9.86461 11.3693 9.6961C11.1278 9.52759 10.7953 9.58682 10.6268 9.82841C10.0476 10.6587 9.08701 11.2002 8.00004 11.2002C6.91307 11.2002 5.95247 10.6587 5.3733 9.82841ZM5.73337 7.30684C6.24883 7.30684 6.6667 6.88889 6.6667 6.37351C6.6667 5.85812 6.24883 5.44017 5.73337 5.44017C5.21791 5.44017 4.80003 5.85812 4.80003 6.37351C4.80003 6.88889 5.21791 7.30684 5.73337 7.30684ZM11.2 6.37351C11.2 6.88889 10.7822 7.30684 10.2667 7.30684C9.75124 7.30684 9.33337 6.88889 9.33337 6.37351C9.33337 5.85812 9.75124 5.44017 10.2667 5.44017C10.7822 5.44017 11.2 5.85812 11.2 6.37351Z"
-                    fill="currentColor"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_1502_25447">
-                    <rect width="16" height="16" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
 
+          <div class="mx-auto max-w-6xl px-4 sm:px-6">
+            <div
+              class="border-t py-12 [border-image:linear-gradient(to_right,transparent,rgb(148_163_184/0.25),transparent)1] md:py-20"
+            >
+              <!-- Section header -->
+              <div class="mx-auto max-w-3xl pb-4 text-center md:pb-12">
+                <div
+                  class="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-gradient-to-r before:from-transparent before:to-orange-200/50 after:h-px after:w-8 after:bg-gradient-to-l after:from-transparent after:to-orange-200/50"
+                >
+                  <span
+                    class="inline-flex bg-gradient-to-r from-orange-500 to-orange-200 bg-clip-text text-transparent"
+                  >
+                    Advanced Controls
+                  </span>
+                </div>
+                <h2
+                  class="pb-4 font-nacelle text-3xl font-semibold text-white md:text-4xl"
+                >
+                  Security Testing Made Easy
+                </h2>
+                <p class="text-lg text-orange-200/65">
+                  Everything you need for comprehensive penetration testing
+                </p>
+              </div>
+
+              <!-- Feature image -->
+              <div class="flex justify-center pb-4 md:pb-12" data-aos="fade-up">
+                <img
+                  class="max-w-none"
+                  src="{{ url_for('static', filename='images/features.png') }}"
+                  width="1104"
+                  height="384"
+                  alt="Features"
+                />
+              </div>
+
+              <!-- Features Grid -->
+              <div
+                class="mx-auto grid max-w-sm gap-12 sm:max-w-none sm:grid-cols-2 md:gap-x-14 md:gap-y-16 lg:grid-cols-3"
+              >
+                <article data-aos="fade-up">
+                  <svg
+                    class="mb-3 fill-orange-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                  >
+                    <path d="M0 0h14v17H0V0Zm2 2v13h10V2H2Z" />
+                    <path
+                      fill-opacity=".48"
+                      d="m16.295 5.393 7.528 2.034-4.436 16.412L5.87 20.185l.522-1.93 11.585 3.132 3.392-12.55-5.597-1.514.522-1.93Z"
+                    />
+                  </svg>
+                  <h3
+                    class="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200"
+                  >
+                    AI-Powered Research
+                  </h3>
+                  <p class="text-orange-200/65">
+                    Automated vulnerability research using advanced AI models
+                    and real-time web intelligence
+                  </p>
+                </article>
+
+                <article data-aos="fade-up" data-aos-delay="100">
+                  <svg
+                    class="mb-3 fill-orange-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                  >
+                    <path
+                      fill-opacity=".48"
+                      d="M7 8V0H5v8h2Zm12 16v-4h-2v4h2Z"
+                    />
+                    <path d="M19 6H0v2h17v8H7v-6H5v8h19v-2h-5V6Z" />
+                  </svg>
+                  <h3
+                    class="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200"
+                  >
+                    Severity Assessment
+                  </h3>
+                  <p class="text-orange-200/65">
+                    Intelligent CVSS scoring and risk assessment for accurate
+                    vulnerability prioritization
+                  </p>
+                </article>
+
+                <article data-aos="fade-up" data-aos-delay="200">
+                  <svg
+                    class="mb-3 fill-orange-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                  >
+                    <path
+                      d="M23.414 6 18 .586 16.586 2l3 3H7a6 6 0 0 0-6 6h2a4 4 0 0 1 4-4h12.586l-3 3L18 11.414 23.414 6Z"
+                    />
+                    <path
+                      fill-opacity=".48"
+                      d="M13.01 12.508a2.5 2.5 0 0 0-3.502.482L1.797 23.16.203 21.952l7.71-10.17a4.5 4.5 0 1 1 7.172 5.437l-4.84 6.386-1.594-1.209 4.841-6.385a2.5 2.5 0 0 0-.482-3.503Z"
+                    />
+                  </svg>
+                  <h3
+                    class="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200"
+                  >
+                    Exploit Generation
+                  </h3>
+                  <p class="text-orange-200/65">
+                    Detailed exploit instructions and reproduction steps for
+                    each identified vulnerability
+                  </p>
+                </article>
+
+                <article data-aos="fade-up" data-aos-delay="300">
+                  <svg
+                    class="mb-3 fill-orange-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                  >
+                    <path
+                      fill-opacity=".48"
+                      d="m3.031 9.05-.593-.805 1.609-1.187.594.804a6.966 6.966 0 0 1 0 8.276l-.594.805-1.61-1.188.594-.805a4.966 4.966 0 0 0 0-5.9Z"
+                    />
+                    <path
+                      d="m7.456 6.676-.535-.845 1.69-1.07.534.844a11.944 11.944 0 0 1 0 12.789l-.535.845-1.69-1.071.536-.845a9.944 9.944 0 0 0 0-10.647Z"
+                    />
+                    <path
+                      d="m11.888 4.35-.514-.858 1.717-1.027.513.858a16.9 16.9 0 0 1 2.4 8.677 16.9 16.9 0 0 1-2.4 8.676l-.513.859-1.717-1.028.514-.858A14.9 14.9 0 0 0 14.003 12a14.9 14.9 0 0 0-2.115-7.65Z"
+                      opacity=".48"
+                    />
+                    <path
+                      d="m16.321 2-.5-.866 1.733-1 .5.866A22 22 0 0 1 21 12c0 3.852-1.017 7.636-2.948 10.97l-.502.865-1.73-1.003.501-.865A19.878 19.878 0 0 0 19 12a20 20 0 0 0-2.679-10Z"
+                    />
+                  </svg>
+                  <h3
+                    class="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200"
+                  >
+                    Report Generation
+                  </h3>
+                  <p class="text-orange-200/65">
+                    Professional vulnerability reports and comprehensive
+                    penetration test documentation
+                  </p>
+                </article>
+
+                <article data-aos="fade-up" data-aos-delay="400">
+                  <svg
+                    class="mb-3 fill-orange-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                  >
+                    <path
+                      fill-opacity=".48"
+                      d="M12 8.8a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm-5 3a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"
+                    />
+                    <path
+                      d="m7.454 2.891.891-.454L7.437.655l-.891.454a12 12 0 0 0 0 21.382l.89.454.91-1.781-.892-.455a10 10 0 0 1 0-17.818ZM17.456 1.11l-.891-.454-.909 1.782.891.454a10 10 0 0 1 0 17.819l-.89.454.908 1.781.89-.454a12 12 0 0 0 0-21.382Z"
+                    />
+                  </svg>
+                  <h3
+                    class="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200"
+                  >
+                    CyberSage Assistant
+                  </h3>
+                  <p class="text-orange-200/65">
+                    Expert cybersecurity chatbot for guidance and technical
+                    support during testing
+                  </p>
+                </article>
+
+                <article data-aos="fade-up" data-aos-delay="500">
+                  <svg
+                    class="mb-3 fill-orange-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                  >
+                    <path
+                      fill-opacity=".48"
+                      d="M19 8h5v2h-5V8Zm-4 5h9v2h-9v-2Zm9 5H11v2h13v-2Z"
+                    />
+                    <path
+                      d="M19.406 3.844 6.083 20.497.586 15 2 13.586l3.917 3.917L17.844 2.595l1.562 1.25Z"
+                    />
+                  </svg>
+                  <h3
+                    class="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200"
+                  >
+                    Website Security Testing
+                  </h3>
+                  <p class="text-orange-200/65">
+                    Automated web vulnerability scanning with AI-powered
+                    analysis and comprehensive reporting
+                  </p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section>
+          <div class="mx-auto max-w-6xl px-4 sm:px-6">
+            <div class="py-12 md:py-20">
+              <!-- Section header -->
+              <div class="mx-auto max-w-3xl pb-12 text-center md:pb-20">
+                <div
+                  class="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-gradient-to-r before:from-transparent before:to-orange-200/50 after:h-px after:w-8 after:bg-gradient-to-l after:from-transparent after:to-orange-200/50"
+                >
+                  <span
+                    class="inline-flex bg-gradient-to-r from-orange-500 to-orange-200 bg-clip-text text-transparent"
+                  >
+                    Real Feedback
+                  </span>
+                </div>
+                <h2
+                  class="pb-4 font-nacelle text-3xl font-semibold text-white md:text-4xl"
+                >
+                  What customers are saying
+                </h2>
+                <p class="text-lg text-orange-200/65">
+                  See how teams around the world are using our platform to
+                  secure their products faster.
+                </p>
+              </div>
+
+              <!-- Testimonials Grid -->
+              <div
+                class="mx-auto grid max-w-sm gap-6 sm:max-w-none sm:grid-cols-2 lg:grid-cols-3"
+              >
+                <!-- Testimonial 1 -->
+                <div
+                  class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/25 p-6"
+                  data-aos="fade-up"
+                >
+                  <div class="relative">
+                    <p class="text-orange-200/65 mb-4">
+                      "Working with Cyber Sage was a pleasure from start to
+                      finish. Their application was very thorough,
+                      collaborative, and delivered exceptional results that
+                      perfectly aligned with our needs."
+                    </p>
+                    <div class="flex items-center">
+                      <img
+                        class="mr-3 rounded-full"
+                        src="{{ url_for('static', filename='images/testimonial-01.jpg') }}"
+                        width="32"
+                        height="32"
+                        alt="Testimonial 01"
+                      />
+                      <div>
+                        <div class="font-medium text-gray-200">
+                          Sarah Johnson
+                        </div>
+                        <div class="text-sm text-orange-200/65">
+                          Product Manager, TechCorp
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div
+                  class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/25 p-6"
+                  data-aos="fade-up"
+                  data-aos-delay="100"
+                >
+                  <div class="relative">
+                    <p class="text-orange-200/65 mb-4">
+                      "Cyber Sage transformed our security testing approach. The
+                      AI-powered vulnerability assessment saved us countless
+                      hours and identified critical issues we might have
+                      missed."
+                    </p>
+                    <div class="flex items-center">
+                      <img
+                        class="mr-3 rounded-full"
+                        src="{{ url_for('static', filename='images/testimonial-02.jpg') }}"
+                        width="32"
+                        height="32"
+                        alt="Testimonial 02"
+                      />
+                      <div>
+                        <div class="font-medium text-gray-200">
+                          Michael Chen
+                        </div>
+                        <div class="text-sm text-orange-200/65">
+                          CTO, InnovateLab
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div
+                  class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/25 p-6"
+                  data-aos="fade-up"
+                  data-aos-delay="200"
+                >
+                  <div class="relative">
+                    <p class="text-orange-200/65 mb-4">
+                      "The automated CVSS scoring and detailed reporting
+                      features are game-changers. Our team can now focus on
+                      remediation rather than manual assessment tasks."
+                    </p>
+                    <div class="flex items-center">
+                      <img
+                        class="mr-3 rounded-full"
+                        src="{{ url_for('static', filename='images/testimonial-03.jpg') }}"
+                        width="32"
+                        height="32"
+                        alt="Testimonial 03"
+                      />
+                      <div>
+                        <div class="font-medium text-gray-200">
+                          Emily Rodriguez
+                        </div>
+                        <div class="text-sm text-orange-200/65">
+                          Lead Designer, CreativeStudio
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA Section -->
+      </main>
+
+      <!-- Footer -->
+      <footer>
+        <div
+          class="border-t mt-9 [border-image:linear-gradient(to_right,transparent,rgb(148_163_184/0.25),transparent)1]"
+        ></div>
+        <div class="relative mx-auto max-w-6xl px-4 sm:px-6">
+          <!-- Footer illustration -->
+          <div
+            class="pointer-events-none absolute bottom-0 left-1/2 -z-10 -translate-x-1/2"
+            aria-hidden="true"
+          >
+            <img
+              class="max-w-none"
+              src="{{ url_for('static', filename='images/footer-illustration.svg') }}"
+              width="1076"
+              height="378"
+              alt="Footer illustration"
+            />
+          </div>
+          <div
+            class="grid grid-cols-2 justify-between gap-12 py-8 sm:grid-rows-[auto_auto] md:grid-cols-4 md:grid-rows-[auto_auto] md:py-12 lg:grid-cols-[repeat(4,minmax(0,140px))_1fr] lg:grid-rows-1 xl:gap-20"
+          >
+            <!-- 1st block -->
+            <div class="space-y-2">
+              <h3 class="text-sm font-medium text-gray-200">Product</h3>
+              <ul class="space-y-2 text-sm">
+                <li>
+                  <a
+                    class="text-orange-200/65 transition hover:text-orange-500"
+                    href="#0"
+                    >Features</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-orange-200/65 transition hover:text-orange-500"
+                    href="#0"
+                    >Integrations</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-orange-200/65 transition hover:text-orange-500"
+                    href="#0"
+                    >Pricing & Plans</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-orange-200/65 transition hover:text-orange-500"
+                    href="#0"
+                    >Changelog</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-orange-200/65 transition hover:text-orange-500"
+                    href="#0"
+                    >Our method</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-orange-200/65 transition hover:text-orange-500"
+                    href="#0"
+                    >User policy</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <!-- 2nd block -->
+            <div class="space-y-2">
+              <h3 class="text-sm font-medium text-gray-200">Company</h3>
+              <ul class="space-y-2 text-sm">
+                <li>
+                  <a
+                    class="text-orange-200/65 transition hover:text-orange-500"
+                    href="#0"
+                    >About us</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-orange-200/65 transition hover:text-orange-500"
+                    href="#0"
+                    >Diversity & Inclusion</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-orange-200/65 transition hover:text-orange-500"
+                    href="#0"
+                    >Blog</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-orange-200/65 transition hover:text-orange-500"
+                    href="#0"
+                    >Careers</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-orange-200/65 transition hover:text-orange-500"
+                    href="#0"
+                    >Financial statements</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <!-- 3rd block -->
+            <div class="space-y-2">
+              <h3 class="text-sm font-medium text-gray-200">Resources</h3>
+              <ul class="space-y-2 text-sm">
+                <li>
+                  <a
+                    class="text-orange-200/65 transition hover:text-orange-500"
+                    href="#0"
+                    >Community</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-orange-200/65 transition hover:text-orange-500"
+                    href="#0"
+                    >Terms of service</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-orange-200/65 transition hover:text-orange-500"
+                    href="#0"
+                    >Report a vulnerability</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <!-- 4th block -->
+            <div class="space-y-2">
+              <h3 class="text-sm font-medium text-gray-200">Social</h3>
+              <ul class="space-y-2 text-sm">
+                <li>
+                  <a
+                    class="text-orange-200/65 transition hover:text-orange-500"
+                    href="#0"
+                    >X</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-orange-200/65 transition hover:text-orange-500"
+                    href="#0"
+                    >Github</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-orange-200/65 transition hover:text-orange-500"
+                    href="#0"
+                    >Facebook</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-orange-200/65 transition hover:text-orange-500"
+                    href="#0"
+                    >Instagram</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-orange-200/65 transition hover:text-orange-500"
+                    href="#0"
+                    >Linkedin</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <!-- 5th block -->
+            <div class="col-span-2 md:col-span-4 lg:col-span-1 lg:text-right">
+              <div class="mb-3">
+                <a class="inline-flex shrink-0" href="#" aria-label="Cruip">
+                  <img
+                    src="https://cdn.worldvectorlogo.com/logos/caterpillar-1.svg"
+                    alt="Cruip Logo"
+                    width="32"
+                    height="32"
+                  />
+                </a>
+              </div>
+              <div class="text-sm text-orange-200/65">
+                <p class="mb-3">© 2024 Orange Sage. All rights reserved.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal">
+      <div class="modal-content">
+        <video id="modalVideo" controls>
+          <source src="{{ url_for('static', filename='videos/video.mp4') }}" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="{{ url_for('static', filename='js/landing.js') }}"></script>
   </body>
 </html>
